@@ -20,6 +20,7 @@ get "/index" do
 end
 
 #When user click [Update], update method is called and page is redirected to /index
+
 post "/runUpdate" do
 	update
 	redirect "/index"
