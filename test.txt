@@ -1,9 +1,0 @@
-<<<<<<< HEAD
-HI JORGE
-=======
-HI THERE!
-Yozz
->>>>>>> aaf7b21451b92f6f4db54106af1d20e2a6ca07e4
-
-
-ISN'T GITHUB AMAZING??
