@@ -25,10 +25,12 @@ post "/runUpdate" do
 	redirect "/index"
 end
 
+#Returns the insert_template
 get "/runInsert" do
 	insert_template
 end
 
+#Values Posted Insert
 post "/runInsert" do
 	$location_name = params[:location]
 	insert
@@ -36,7 +38,8 @@ post "/runInsert" do
 	back_to_index
 end
 
-post "/runDelete" do
+#Delete template is retrieved and displayed
+get "/runDelete" do
 	delete_template
 end
 
@@ -107,7 +110,7 @@ def index_template
                         <form method='get' action='/runInsert'>
                                 <button type='submit' value='Insert'>INSERT</button>
                         </form>
-			<form method='post' action='/runDelete'>
+			<form method='get' action='/runDelete'>
 				<button type='submit' value='Delete'>DELETE</button>
 			</form>
                         <br>
