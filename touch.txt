@@ -1,7 +1,4 @@
-HI JORGE
+THIS IS A TOUCH.txt file
 
-ISN'T GITHUB AMAZING?
 
-I LOVE NODE JS
-
-THIS IS A NEW LINE, CAN YOU SEE IT IN THE REMOTE REPOSITORY?
+Today is Friday the 5th day of the week!
