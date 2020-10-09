@@ -36,6 +36,11 @@ post "/runInsert" do
 	back_to_index
 end
 
+post "/runDelete" do
+	delete_template
+end
+
+
 def mysql_client
 	puts "LOADING BOOT PROGRAM!"
 	table_arr = []
@@ -96,14 +101,15 @@ def index_template
                 <body>
 			<img src='images/safeEntry.jpg' alt='Safe Entry Logo' width='200' height='70'/>
                         <p>Welcome to the Safe Entry Management Portal. From this portal you'll be able to add, delete and refresh the crowd levels at different locations in Singapore.</p>
-                        <p>Click the [REFRESH] button to refresh the table!</p>
                         <form method='post' action='/runUpdate'>
-                                <button type='submit' value='Submit'>REFRESH</button>
+                                <button type='submit' value='Refresh'>REFRESH</button>
                         </form>
-                        <p>Click the [INSERT] button to add a new location!</>
                         <form method='get' action='/runInsert'>
-                                <button type='submit' value='Submit'>INSERT</button>
+                                <button type='submit' value='Insert'>INSERT</button>
                         </form>
+			<form method='post' action='/runDelete'>
+				<button type='submit' value='Delete'>DELETE</button>
+			</form>
                         <br>
                         #{$xm}
                         </br>
@@ -131,15 +137,29 @@ def insert_template
 	"
 end
 
-def back_to_index
+def delete_template
 	"
 	<html>
 		<body>
-			<p> Click the [Back] button to return to the index page.<br>
+			<h1>Welcome to Safe Entry Delete Page</h1>
+			<p style='color:red'>I'm Sorry This Page Is Currently Under Construction! We Apologize For Any Inconveniences Caused</p><br>
 			<a href='/index'>
 				<input type='submit' value='Back'/>
 			</a>
 			</br>
+		</body>
+	</html>
+	"
+end
+
+def back_to_index
+	"
+	<html>
+		<body>
+			<p> Click the [Back] button to return to the index page.<br></br>
+			<a href='/index'>
+				<input type='submit' value='Back'/>
+			</a>
 		</body>
 	</html>
 	"
