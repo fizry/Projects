@@ -20,7 +20,7 @@ get "/index" do
 end
 
 #When user click [Update], update method is called and page is redirected to /index
-post "/runUpdate" do
+get "/runUpdate" do
 	update
 	redirect "/index"
 end
@@ -53,7 +53,7 @@ def mysql_client
 
 	#Store each result entry into dictionary before being stored in table_arr
 	results.each do |row|
-		table_arr << {"Location ID" => row["store_id"].to_s, "Location" => row["store_address"], "Crowd Level" => row["crowd_level"].to_s}
+		table_arr << {"Location ID" => row["store_id"].to_s, "Location" => row["store_address"], "Crowd Level" => row["crowd_level"].to_s, "Mall Limit" => row["crowd_limit"].to_s}
 	end
 
 	#Create HTML table
@@ -69,17 +69,24 @@ end
 def update
 	puts "LOADING UPDATE SEQUENCE!"
 	
+	crowd_limit = []
+
 	#Query safeEntry for no. of entries
-	results = $client.query("SELECT * FROM safeEntry;")
+	results = $client.query("SELECT crowd_limit FROM safeEntry;")
+	results.each do |row|
+		crowd_limit << row["crowd_limit"].to_s
+	end
 
 	#crowd_level updated with random number between 0 to 1000
-	for i in 1..results.count
-		rand_num = rand 2000
+	for i in 0...results.count
+		if crowd_limit[i] == "5000"
+			rand_num = rand 5000
+		else
+			rand_num = rand 10000
+		end
+
 		$client.query("UPDATE safeEntry SET crowd_level=" + rand_num.to_s + " WHERE store_id=" + i.to_s + ";")
 	end
-	
-	#Pause the program for 5 seconds
-	#sleep 3
 
 	puts "UPDATE SEQUENCE LOADED!"
 end
@@ -100,23 +107,28 @@ def index_template
                 </head>
                 <style>
                         table, td, tr, th{border: 1px solid black;width: 500px;text-align: center;}
+			.crowd_min{background: green;}
+			.crowd_avg{background: yellow;}
+			.crowd_max{background: red;}
                 </style>
                 <body>
-			<img src='images/safeEntry.jpg' alt='Safe Entry Logo' width='200' height='70'/>
+			<h1>Safe Entry Management Portal</h1>
+			<img src='/home/frost/Projects/Capture1.PNG' alt='Safe Entry Logo' width='200' height='70'/>
                         <p>Welcome to the Safe Entry Management Portal. From this portal you'll be able to add, delete and refresh the crowd levels at different locations in Singapore.</p>
-                        <form method='post' action='/runUpdate'>
-                                <button type='submit' value='Refresh'>REFRESH</button>
-                        </form>
-                        <form method='get' action='/runInsert'>
-                                <button type='submit' value='Insert'>INSERT</button>
-                        </form>
-			<form method='get' action='/runDelete'>
-				<button type='submit' value='Delete'>DELETE</button>
-			</form>
+                        <a href='/runUpdate'>
+                                <input type='submit' value='REFRESH'/>
+                        </a>
+                        <a href='/runInsert'>
+                                <input type='submit' value='INSERT'/>
+                        </a>
+			<a href='/runDelete'>
+				<input type='submit' value='DELETE'/>
+			</a><br>
                         <br>
                         #{$xm}
                         </br>
-                        #{"Last Updated: " + Time.now.ctime}
+                        #{'Last Updated: ' + Time.now.ctime}
+			</br>
                 </body>
         </html>
         "
