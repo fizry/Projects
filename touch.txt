@@ -1,12 +1,1 @@
-THIS IS A TOUCH.txt file
-
-I think that mooncakes are naise
-
-Lovely mooncake
-Octopus Takoyaki
-Velvety Chocolate
-Express Choco
-
-Zebra the Chocolate Zebra
-Underwater World
-Lion Alex
+This is a touch.txt file!
