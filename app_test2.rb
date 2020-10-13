@@ -106,29 +106,31 @@ def index_template
                 <head>
                 </head>
                 <style>
-                        table, td, tr, th{border: 1px solid black;width: 500px;text-align: center;}
-			.crowd_min{background: green;}
-			.crowd_avg{background: yellow;}
-			.crowd_max{background: red;}
+			table, td, tr, th{border: 1px solid black; width: 500px; text-align: center;}
+			.gov_agency {background-color:#e5e5e5; padding: 2px; text-align:left;}
+			.nav_bar {background-color: #FFFFFF; padding: 20px;}
+			.nav_item {padding-left: 20px; padding-top: 5px; padding-right: 10px; padding-bottom: 5px;}
+			.table_border {background-color: #FFF0F5;}
                 </style>
                 <body>
-			<h1>Safe Entry Management Portal</h1>
-			<img src='/home/frost/Projects/Capture1.PNG' alt='Safe Entry Logo' width='200' height='70'/>
-                        <p>Welcome to the Safe Entry Management Portal. From this portal you'll be able to add, delete and refresh the crowd levels at different locations in Singapore.</p>
-                        <a href='/runUpdate'>
-                                <input type='submit' value='REFRESH'/>
-                        </a>
-                        <a href='/runInsert'>
-                                <input type='submit' value='INSERT'/>
-                        </a>
-			<a href='/runDelete'>
-				<input type='submit' value='DELETE'/>
-			</a><br>
-                        <br>
-                        #{$xm}
-                        </br>
-                        #{'Last Updated: ' + Time.now.ctime}
-			</br>
+			<div class='gov_agency'>
+				<p>A Singapore Governement Agency Website</p>
+			</div>
+			<div class='nav_bar'>
+				<img src='https://www.ndi-api.gov.sg/assets/img/safe-entry/SafeEntry_logo_inline.png' alt='Safe Entry Logo' width=200' height='40'/>
+				<div class='nav_item'>
+					<a href='/runUpdate'>Refresh</a>
+					<a href='/runInsert'>Insert</a>
+					<a href='/runDelete'>Delete</a>
+				</div>
+			</div>
+			<br>
+			<div class='table_border'>
+	                        #{$xm}
+				<br>
+                	        #{'Last Updated: ' + Time.now.ctime}
+			</div>
+			</br></br>
                 </body>
         </html>
         "
