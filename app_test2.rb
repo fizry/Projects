@@ -106,30 +106,32 @@ def index_template
                 <head>
                 </head>
                 <style>
-			table, td, tr, th{border: 1px solid black; width: 500px; text-align: center;}
-			.gov_agency {background-color:#e5e5e5; padding: 2px; text-align:left;}
-			.nav_bar {background-color: #FFFFFF; padding: 20px;}
-			.nav_item {padding-left: 20px; padding-top: 5px; padding-right: 10px; padding-bottom: 5px;}
-			.table_border {background-color: #FFF0F5;}
+			table, td, tr, th{border: 1px solid black; width: 550px; text-align: center; background-color: #FFF0F5;}
+			header {display: block; background-color: #DCDCDC;}
+			div.image {float: left; display: inline-block; background-color: #FFFFFF;}
+			ul {display: inline-block; list-style-type: none; background-color: #FFFFFF;}
+			li {float: right}
+			li a {display: block; color: black; text-align: center; padding: 14px 16px; text-decoration: none;}
+			bottom-body {display: block; background-color: #FFF0F5;}
                 </style>
                 <body>
-			<div class='gov_agency'>
+			<header>
 				<p>A Singapore Governement Agency Website</p>
+			</header>
+			<div class='image'>
+				<img src='https://www.ndi-api.gov.sg/assets/img/safe-entry/SafeEntry_logo_inline.png' alt='Safe Entry Logo' width=300 height=60/>
 			</div>
-			<div class='nav_bar'>
-				<img src='https://www.ndi-api.gov.sg/assets/img/safe-entry/SafeEntry_logo_inline.png' alt='Safe Entry Logo' width=200' height='40'/>
-				<div class='nav_item'>
-					<a href='/runUpdate'>Refresh</a>
-					<a href='/runInsert'>Insert</a>
-					<a href='/runDelete'>Delete</a>
-				</div>
-			</div>
+			<ul>
+				<li><a href='/runUpdate'>Refresh</a></li>
+				<li><a href='/runInsert'>Insert</a></li>
+				<li><a href='/runDelete'>Delete</a></li>
+			</ul>
 			<br>
-			<div class='table_border'>
-	                        #{$xm}
+			<bottom-body>
+				#{$xm}
 				<br>
-                	        #{'Last Updated: ' + Time.now.ctime}
-			</div>
+                		#{'Last Updated: ' + Time.now.ctime}
+			</bottom-body>
 			</br></br>
                 </body>
         </html>
