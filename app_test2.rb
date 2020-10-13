@@ -106,13 +106,14 @@ def index_template
                 <head>
                 </head>
                 <style>
+			body {font-family: Arial; text-color: white;}
 			table, td, tr, th{border: 1px solid black; width: 550px; text-align: center; background-color: #FFF0F5;}
-			header {display: block; background-color: #DCDCDC;}
-			div.image {float: left; display: inline-block; background-color: #FFFFFF;}
-			ul {display: inline-block; list-style-type: none; background-color: #FFFFFF;}
-			li {float: right}
-			li a {display: block; color: black; text-align: center; padding: 14px 16px; text-decoration: none;}
-			bottom-body {display: block; background-color: #FFF0F5;}
+			.header {display: block; background-color: #DCDCDC;}
+			.div.image {float: left; display: inline-block; background-color: #FFFFFF;}
+			.ul {display: inline-block; list-style-type: none; background-color: #FFFFFF;}
+			.li {float: right}
+			.li a {display: block; color: black; text-align: center; padding: 14px 16px; text-decoration: none;}
+			.bottom-body {display: block; background-color: #FFF0F5;}
                 </style>
                 <body>
 			<header>
