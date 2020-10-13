@@ -104,35 +104,43 @@ def index_template
         "
         <html>
                 <head>
-                </head>
+		</head>
                 <style>
-			body {font-family: Arial; text-color: white;}
-			table, td, tr, th{border: 1px solid black; width: 550px; text-align: center; background-color: #FFF0F5;}
-			.header {display: block; background-color: #DCDCDC;}
-			.div.image {float: left; display: inline-block; background-color: #FFFFFF;}
-			.ul {display: inline-block; list-style-type: none; background-color: #FFFFFF;}
-			.li {float: right}
-			.li a {display: block; color: black; text-align: center; padding: 14px 16px; text-decoration: none;}
-			.bottom-body {display: block; background-color: #FFF0F5;}
+			body {background-color: #FFE4E1; margin: 0; padding: 0;}
+			table, td, tr, th{border: 1px solid black; width: 550px; text-align: center;}
+			.sg_gov {width: 100%; overflow:auto; background-color: #DCDCDC; font-size: 16px;}
+			.sg_gov p {padding-left: 90px; padding-top: 5px;}
+			.safeEntry_img img {position: absolute; background-color: #FFFFFF; margin-top: 15px; margin-left: 10px; width: 200px; height: 40; }
+			nav {width: 100%; background: #FFFFFF; overflow: auto;}
+			ul {list-style-type: none; margin: 0 0 0 150px; padding: 0;}
+			li {float: right;}
+			li a {display: block; width: 100px; padding: 20px 15px; text-align: center; color: black;}
+			li a:hover {background: #D3D3D3; color: white; transition: 0.5s;}
+
+
                 </style>
                 <body>
 			<header>
-				<p>A Singapore Governement Agency Website</p>
+				<div class='sg_gov'>
+					<p>A Singapore Governement Agency Website</p>
+				</div>
+				<div class='safeEntry_directory'>
+					<nav class='nav_bar'>
+						<a class='safeEntry_img' href='#'>
+							<img src='https://www.ndi-api.gov.sg/assets/img/safe-entry/SafeEntry_logo_inline.png' alt='Safe Entry Logo'/>
+                                                </a>
+						<ul>
+							<li><a href='/runDelete' style='font-size: 20px'>Delete</a></li>
+							<li><a href='/runInsert' style='font-size: 20px'>Insert</a></li>
+							<li><a href='/runUpdate' style='font-size: 20px'>Refresh</a></li>
+						</ul>
+					</nav>
+				</div>
 			</header>
-			<div class='image'>
-				<img src='https://www.ndi-api.gov.sg/assets/img/safe-entry/SafeEntry_logo_inline.png' alt='Safe Entry Logo' width=300 height=60/>
-			</div>
-			<ul>
-				<li><a href='/runUpdate'>Refresh</a></li>
-				<li><a href='/runInsert'>Insert</a></li>
-				<li><a href='/runDelete'>Delete</a></li>
-			</ul>
 			<br>
-			<bottom-body>
-				#{$xm}
-				<br>
-                		#{'Last Updated: ' + Time.now.ctime}
-			</bottom-body>
+			#{$xm}
+			<br>
+                	#{'Last Updated: ' + Time.now.ctime}
 			</br></br>
                 </body>
         </html>
