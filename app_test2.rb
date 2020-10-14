@@ -9,7 +9,7 @@ $client = Mysql2::Client.new(
                 :host => '127.0.0.1',
                 :username => 'root',
                 :password => 'toor',
-                :database => 'INTERNSHIP',
+                :database => 'internship',
                 :encoding => 'utf8'
         )
 
@@ -33,8 +33,9 @@ end
 #Values Posted Insert
 post "/runInsert" do
 	$location_name = params[:location]
+	$limit = params[:limit]
 	insert
-	$location_name + " added! "
+	"Building: " + $location_name + "Limit:  " + $limit
 	back_to_index
 end
 
@@ -78,14 +79,16 @@ def update
 	end
 
 	#crowd_level updated with random number between 0 to 1000
-	for i in 0...results.count
+	for i in 0...results.count + 1
 		if crowd_limit[i] == "5000"
 			rand_num = rand 5000
-		else
+		elsif crowd_limit[i] == "10000"
 			rand_num = rand 10000
+		else
+			rand_num = rand 15000
 		end
 
-		$client.query("UPDATE safeEntry SET crowd_level=" + rand_num.to_s + " WHERE store_id=" + i.to_s + ";")
+		$client.query("UPDATE safeEntry SET crowd_level=" + rand_num.to_s + " WHERE store_id=" + (i + 1).to_s + ";")
 	end
 
 	puts "UPDATE SEQUENCE LOADED!"
@@ -93,8 +96,11 @@ end
 
 def insert
 	puts "LOADING INSERT SEQUENCE!"
-        if $location_name.to_s.empty? != TRUE
-                $client.query("INSERT INTO safeEntry (crowd_level, store_address) VALUES(0, '" + $location_name.to_s + "');")
+	
+	id_num = $client.query("SELECT crowd_limit FROM safeEntry;")
+
+	if $location_name.to_s.empty? != TRUE || $limit.to_s.empty? != TRUE
+		$client.query("INSERT INTO safeEntry (store_id, store_address, crowd_level , crowd_limit) VALUES( " + (id_num.count + 1).to_s + ", '"  + $location_name.to_s + "', 0, " + $limit.to_s  + ");")
                 puts "STATEMENT HAS BEEN QUERIED!"
         end
 	puts "INSERT SEQUENCE LOADED!"
@@ -106,7 +112,7 @@ def index_template
                 <head>
 		</head>
                 <style>
-			body {background-color: #FFE4E1; margin: 0; padding: 0;}
+			body {background-color: #FFE4E1; margin: 0; padding: 0; font-family: Times New Roman;}
 			table, td, tr, th{border: 1px solid black; width: 550px; text-align: center;}
 			.sg_gov {width: 100%; overflow:auto; background-color: #DCDCDC; font-size: 16px;}
 			.sg_gov p {padding-left: 90px; padding-top: 5px;}
@@ -114,9 +120,9 @@ def index_template
 			nav {width: 100%; background: #FFFFFF; overflow: auto;}
 			ul {list-style-type: none; margin: 0 0 0 150px; padding: 0;}
 			li {float: right;}
-			li a {display: block; width: 100px; padding: 20px 15px; text-align: center; color: black;}
+			li a {display: block; width: 100px; padding: 20px 15px; text-align: center; color: black; font-size: 20px; text-decoration: none;}
 			li a:hover {background: #D3D3D3; color: white; transition: 0.5s;}
-
+			section {margin-left: 15px; font-size: 20px;}
 
                 </style>
                 <body>
@@ -130,18 +136,22 @@ def index_template
 							<img src='https://www.ndi-api.gov.sg/assets/img/safe-entry/SafeEntry_logo_inline.png' alt='Safe Entry Logo'/>
                                                 </a>
 						<ul>
-							<li><a href='/runDelete' style='font-size: 20px'>Delete</a></li>
-							<li><a href='/runInsert' style='font-size: 20px'>Insert</a></li>
-							<li><a href='/runUpdate' style='font-size: 20px'>Refresh</a></li>
+							<li><a href='/runDelete'>Delete</a></li>
+							<li><a href='/runInsert'>Insert</a></li>
+							<li><a href='/runUpdate'>Refresh</a></li>
+							<li><a href='/runAbout'>About</a></li>
 						</ul>
 					</nav>
 				</div>
 			</header>
-			<br>
-			#{$xm}
-			<br>
-                	#{'Last Updated: ' + Time.now.ctime}
-			</br></br>
+			<section>
+				<p>Welcome to the Safe Entry Management Portal! Here you'll be able to access the crowd levels of various shopping malls and buildings. Simply click on the <b>Refresh</b> to update the page with new records. Click <b>Insert</b> to add a new building to the list! And click <b>Delete</b> to remove a building from the list!<br></br><b><i> #LET'S DO OUR PART!</i></b><br><b><i> #SGUNITED!</i></b></br></p>
+				<br>
+				#{$xm}
+				<br>
+                		#{'Last Updated: ' + Time.now.ctime}
+				</br></br>
+			</section>
                 </body>
         </html>
         "
@@ -154,7 +164,8 @@ def insert_template
 			<h1>Welcome to Safe Entry Insert Page</h1>
 			<p>Please enter the name of the building and click [Submit] when you are ready!</p>
 			<form method='post' action='/runInsert'>
-				Location Name: <input type='text' name='location'>
+				Location Name: <input type='text' name='location'><br></br>
+				Limit: <input type='text' name='limit'><br></br>
 				<button type='submit' value='Submit'>Submit</button>
 			</form>
 			<a href='/index'>
