@@ -5,13 +5,18 @@ require 'mysql2'
 require 'builder'
 
 #Global variable set to database connection
-$client = Mysql2::Client.new(
-                :host => '127.0.0.1',
-                :username => 'root',
-                :password => 'toor',
-                :database => 'internship',
-                :encoding => 'utf8'
-        )
+
+def mysql_conn
+	client = Mysql2::Client.new(
+        	        :host => '127.0.0.1',
+                	:username => 'root',
+	                :password => 'toor',
+        	        :database => 'internship',
+			:reconnect => true,
+                	:encoding => 'utf8'
+	        )
+	return client
+end
 
 #When /index page is called, mysql_client method is called
 get "/index" do
@@ -61,7 +66,8 @@ def mysql_client
 	table_arr = []
 
 	#Query results from safeEntry
-	results = $client.query("SELECT * FROM safeEntry ORDER BY store_id ASC;")
+	results = mysql_conn.query("SELECT * FROM safeEntry ORDER BY crowd_level ASC;")
+	mysql_conn.close
 
 	#Store each result entry into dictionary before being stored in table_arr
 	results.each do |row|
@@ -84,7 +90,8 @@ def update
 	crowd_limit = []
 
 	#Query safeEntry for no. of entries
-	results = $client.query("SELECT crowd_limit FROM safeEntry;")
+	results = mysql_conn.query("SELECT crowd_limit FROM safeEntry;")
+	mysql_conn.close
 	results.each do |row|
 		crowd_limit << row["crowd_limit"].to_s
 	end
@@ -99,35 +106,47 @@ def update
 			rand_num = rand 15000
 		end
 
-		$client.query("UPDATE safeEntry SET crowd_level=" + rand_num.to_s + " WHERE store_id=" + (i + 1).to_s + ";")
+		mysql_conn.query("UPDATE safeEntry SET crowd_level=" + rand_num.to_s + " WHERE store_id=" + (i + 1).to_s + ";")
+		mysql_conn.close
 	end
-
+	
 	puts "UPDATE SEQUENCE LOADED!"
 end
 
 def insert
 	puts "LOADING INSERT SEQUENCE!"
 	
-	id_num = $client.query("SELECT crowd_limit FROM safeEntry;")
+	id_num = mysql_conn.query("SELECT crowd_limit FROM safeEntry;")
+	mysql_conn.close
 
 	if $location_name.to_s.empty? != TRUE || $limit.to_s.empty? != TRUE
-		$client.query("INSERT INTO safeEntry (store_id, store_address, crowd_level , crowd_limit) VALUES( " + (id_num.count + 1).to_s + ", '"  + $location_name.to_s + "', 0, " + $limit.to_s  + ");")
+		mysql_conn.query("INSERT INTO safeEntry (store_id, store_address, crowd_level , crowd_limit) VALUES( " + (id_num.count + 1).to_s + ", '"  + $location_name.to_s + "', 0, " + $limit.to_s  + ");")
+		mysql_conn.close()
                 puts "STATEMENT HAS BEEN QUERIED!"
         end
+
 	puts "INSERT SEQUENCE LOADED!"
 end
 
 def delete
 	puts "LOADING DELETE SEQUENCE!"
 
-	results = $client.query("SELECT store_id FROM safeEntry;")
-	
+	old_count = mysql_conn.query("SELECT COUNT(*) FROM safeEntry;")
+	mysql_conn.close
+
 	if $store_id.to_s.empty? != TRUE
-		$client.query("DELETE FROM safeEntry WHERE store_id=" + $store_id.to_s + ";")
+		mysql_conn.query("DELETE FROM safeEntry WHERE store_id=" + $store_id.to_s + ";")
 		puts "DELETE STATEMENT HAS BEEN QUERIED!"
+		new_count = mysql_conn.query("SELECT COUNT(*) FROM safeEntry;")
+
+		for i in (($store_id).to_s)...((new_count + 1).to_s)
+			puts (i)
+#			mysql_conn.query("UPDATE safeEntry SET store_id=" + ($store_id + 1).to_s  + " WHERE store_id=" + (i-1).to_s  + ";")
+#			puts "CHANGING STORE ID: " + $store_id + " TO " + (i-1).to_us
+		end
 	end
 	
-	
+        mysql_conn.close	
 	puts "DELETE SEQUENCE LOADED!"
 end
 
@@ -226,7 +245,7 @@ def delete_template
 
                 </head>
 		<body>
-                       <header>
+			<header>
                                 <div class='sg_gov'>
                                         <p>A Singapore Governement Agency Website</p>
                                 </div>
@@ -249,7 +268,7 @@ def delete_template
                                 <p>Refer to the table below and key in the respective Store ID in the input box!</p>
 				#{$xm}
 				<br>
-                                <form method='post' action='/runDelete'>
+                                <form method='post' name='Form' onSubmit='return validateForm()' action='/runDelete'>
                                         Store ID: <input type='text' name='store_id'><br></br></br>
                                         <button type='submit' value='Submit'>Submit</button>
                                         <a href='/index'>
