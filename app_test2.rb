@@ -4,8 +4,7 @@ require 'sinatra/reloader'
 require 'mysql2'
 require 'builder'
 
-#Global variable set to database connection
-
+#Initialize mysql_conn with mysql database connection
 def mysql_conn
 	client = Mysql2::Client.new(
         	        :host => '127.0.0.1',
@@ -16,6 +15,11 @@ def mysql_conn
                 	:encoding => 'utf8'
 	        )
 	return client
+end
+
+#Regex Expression to check if params is integers only!
+def contains_nums(int)
+	int =~ /\d+/
 end
 
 #When /index page is called, mysql_client method is called
@@ -49,25 +53,26 @@ get "/runDelete" do
 	delete_template
 end
 
+#Values posted to Delete
 post "/runDelete" do
 	$store_id = params[:store_id]
 	delete
 	back_to_index
 end
 
-
 #About template is retrieved and displayed
 get "/runAbout" do
         about_template
 end
 
+#BOOT FUNCTION
 def mysql_client
 	puts "LOADING BOOT PROGRAM!"
 	table_arr = []
 
 	#Query results from safeEntry
-	results = mysql_conn.query("SELECT * FROM safeEntry ORDER BY crowd_level ASC;")
-	mysql_conn.close
+#	results = mysql_conn.query("SELECT * FROM safeEntry ORDER BY crowd_level ASC;")
+	results = mysql_conn.query("SELECT * FROM safeEntry ORDER BY store_id ASC;")
 
 	#Store each result entry into dictionary before being stored in table_arr
 	results.each do |row|
@@ -80,10 +85,12 @@ def mysql_client
 		$xm.tr { table_arr[0].keys.each { |key| $xm.th(key)}}
 		table_arr.each { |row| $xm.tr {row.values.each { |value| $xm.td(value)}}}
 	}
-
+	
+	mysql_conn.close
 	puts "BOOT PROGRAM LOADED!"
 end
 
+#UPDATE FUNCTION
 def update
 	puts "LOADING UPDATE SEQUENCE!"
 	
@@ -91,62 +98,116 @@ def update
 
 	#Query safeEntry for no. of entries
 	results = mysql_conn.query("SELECT crowd_limit FROM safeEntry;")
-	mysql_conn.close
+
 	results.each do |row|
 		crowd_limit << row["crowd_limit"].to_s
 	end
 
 	#crowd_level updated with random number between 0 to 1000
-	for i in 0...results.count + 1
-		if crowd_limit[i] == "5000"
+	for i in 0..results.count
+		if crowd_limit[i].to_i <= 5000
 			rand_num = rand 5000
-		elsif crowd_limit[i] == "10000"
+		elsif crowd_limit[i].to_i <= 10000
 			rand_num = rand 10000
 		else
 			rand_num = rand 15000
 		end
 
 		mysql_conn.query("UPDATE safeEntry SET crowd_level=" + rand_num.to_s + " WHERE store_id=" + (i + 1).to_s + ";")
-		mysql_conn.close
 	end
 	
+	mysql_conn.close
 	puts "UPDATE SEQUENCE LOADED!"
 end
 
+#INSERT FUNCTION
 def insert
 	puts "LOADING INSERT SEQUENCE!"
 	
-	id_num = mysql_conn.query("SELECT crowd_limit FROM safeEntry;")
+	id_num_list = []
+	limit = $limit.to_s
+	location = $location_name.to_s
+	i = 0
+	insert_here = 0
+		
+	id_num = mysql_conn.query("SELECT store_id FROM safeEntry;")
+
+	id_num.each do |row|
+		id_num_list << row["store_id"].to_s
+	end
+
+	while i <= id_num.count do
+		if (i+1 != id_num_list[i]) 
+			insert_here = id_num_list[i].to_i - 1
+		end
+		i = i + 1
+	end
+		
+	puts insert_here
+#	if location.empty? != true || limit.empty? != true
+#		limit_num_check = contains_nums(limit)
+#		if limit_num_check == 0
+#			if insert_here != 0
+#				mysql_conn.query("INSERT INTO safeEntry (store_id, store_address, crowd_level , crowd_limit) VALUES(" + insert_here.to_s + ", '"  + location + "', 0, " + limit  + ");")
+#				puts "STATEMENT A HAS BEEN QUERIED!"
+#			else
+#				mysql_conn.query("INSERT INTO safeEntry (store_id, store_address, crowd_level, crowd_limit) VALUES(" + (id_num.count + 1).to_s  ", '" + location + ", 0, " + limit + ");")
+#				puts "STATEMENT B HAS BEEN QUERIED!"
+#		else
+#			puts "LIMIT DOES NOT CONTAIN INTEGERS"
+#		end
+#       end
+
 	mysql_conn.close
-
-	if $location_name.to_s.empty? != TRUE || $limit.to_s.empty? != TRUE
-		mysql_conn.query("INSERT INTO safeEntry (store_id, store_address, crowd_level , crowd_limit) VALUES( " + (id_num.count + 1).to_s + ", '"  + $location_name.to_s + "', 0, " + $limit.to_s  + ");")
-		mysql_conn.close()
-                puts "STATEMENT HAS BEEN QUERIED!"
-        end
-
 	puts "INSERT SEQUENCE LOADED!"
 end
 
+#DELETE FUNCTION
 def delete
 	puts "LOADING DELETE SEQUENCE!"
 
-	old_count = mysql_conn.query("SELECT COUNT(*) FROM safeEntry;")
-	mysql_conn.close
+	pre_delete_list = []
+	after_delete_list = []
+	neg_num_list = []
+	store_id = $store_id.to_s
 
-	if $store_id.to_s.empty? != TRUE
-		mysql_conn.query("DELETE FROM safeEntry WHERE store_id=" + $store_id.to_s + ";")
-		puts "DELETE STATEMENT HAS BEEN QUERIED!"
-		new_count = mysql_conn.query("SELECT COUNT(*) FROM safeEntry;")
+	pre_delete = mysql_conn.query("SELECT store_id FROM safeEntry;")
 
-		for i in (($store_id).to_s)...((new_count + 1).to_s)
-			puts (i)
-#			mysql_conn.query("UPDATE safeEntry SET store_id=" + ($store_id + 1).to_s  + " WHERE store_id=" + (i-1).to_s  + ";")
-#			puts "CHANGING STORE ID: " + $store_id + " TO " + (i-1).to_us
+	pre_delete.each do |row|
+		pre_delete_list << row["store_id"].to_s
+	end
+
+	if store_id.empty? != true
+		store_id_num_check = contains_nums(store_id)
+		if store_id_num_check == 0
+			mysql_conn.query("DELETE FROM safeEntry WHERE store_id=" + store_id + ";")
+			after_delete = mysql_conn.query("SELECT store_id FROM safeEntry;")
+		
+			after_delete.each do |row|
+				after_delete_list << row["store_id"].to_s
+			end
+
+			for i in 0..pre_delete_list.count
+				if pre_delete_list[i] != after_delete_list[i]
+					mysql_conn.query("UPDATE safeEntry SET store_id=" + (after_delete_list[i].to_i - 1).to_s + " WHERE store_id=" + pre_delete_list[i].to_s  + ";")
+				end
+			end
+
+			neg_num = mysql_conn.query("SELECT store_id FROM safeEntry WHERE store_id=-1")
+		
+			neg_num.each do |row|
+				neg_num_list << row["store_id"].to_s
+			end
+
+			if neg_num_list.any? == true
+				mysql_conn.query("UPDATE safeEntry SET store_id=" + (after_delete_list.count + 1).to_s  + " WHERE store_id=-1;")
+			end
+			mysql_conn.close
+		else
+			puts "STORE ID DOES NOT CONTAIN INTEGERS"
 		end
 	end
-	
-        mysql_conn.close	
+
 	puts "DELETE SEQUENCE LOADED!"
 end
 
@@ -197,7 +258,16 @@ def insert_template
 			<meta charset='utf-8'>
                         <link rel='stylesheet' type='text/css' href='/application.css'/>
                         <title>SEMP - Insert Page</title>
-
+			<script>
+                                function validateForm() {
+                                         var x = document.forms['Form']['location'].value;
+					 var y = document.forms['Form']['limit'].value;
+                                         if (x == '' || x == null || y == '' || y == null) {
+                                                alert('Please fill up the empty fields');
+                                                return false;
+                                        }
+                                }
+                        </script>
 		</head>
 		<body>
 			<header>
@@ -221,7 +291,7 @@ def insert_template
 			<section>
 				<h1>Welcome to Safe Entry Insert Page</h1>
 				<p>Please state the name of the store followed by the crowd limit!</p>
-				<form method='post' action='/runInsert'>
+				<form method='post' action='/runInsert' name='Form' OnSubmit='return validateForm()'>
 					Store Name: <input type='text' name='location'><br></br>
 					Crowd Limits: <input type='text' name='limit'><br></br>					
 					<button type='submit' value='Submit'>Submit</button>
@@ -242,7 +312,15 @@ def delete_template
                         <meta charset='utf-8'>
                         <link rel='stylesheet' type='text/css' href='/application.css'/>
                         <title>SEMP - Delete Page</title>
-
+			<script>
+				function validateForm() {
+ 					 var x = document.forms['Form']['store_id'].value;
+					 if (x == '' || x == null) {
+						alert('Store ID must be filled out');
+						return false;
+  					}
+				}
+			</script>
                 </head>
 		<body>
 			<header>
@@ -368,7 +446,7 @@ def back_to_index
                                 </div>
                         </header>
 			<section>
-				<p> Click the [Back] button to return to the index page.<br></br>
+				<p> Click the [Back] button to return to the index page.</p><br></br>
 				<a href='/index'>
 					<input type='submit' value='Back'/>
 				</a>
@@ -376,4 +454,41 @@ def back_to_index
 		</body>
 	</html>
 	"
+end
+
+def construction_template
+        "
+        <html>
+                 <head>
+                        <meta charset='utf-8'>
+                        <link rel='stylesheet' type='text/css' href='/application.css'/>
+                        <title>SEMP - Insert Page</title>
+
+                </head>
+                <body>
+                        <header>
+                                <div class='sg_gov'>
+                                        <p>A Singapore Governement Agency Website</p>
+                                </div>
+                                <div class='safeEntry_directory'>
+                                        <nav class='nav_bar'>
+                                                <a class='safeEntry_img' href='/index'>
+                                                        <img src='https://www.ndi-api.gov.sg/assets/img/safe-entry/SafeEntry_logo_inline.png' alt='Safe Entry Logo'/>
+                                                </a>
+                                                <ul>
+                                                        <li><a href='/runDelete'>Delete</a></li>
+                                                        <li><a href='/runInsert'>Insert</a></li>
+                                                        <li><a href='/runUpdate'>Refresh</a></li>
+                                                        <li><a href='/runAbout'>About</a></li>
+                                                </ul>
+                                        </nav>
+                                </div>
+                        </header>
+                        <section>
+                                <h1 style='color: red'>SORRY! THIS PAGE IS UNDER CONSTRUCTION! THANK YOU!</h1>
+                        </section>
+                </body>
+        </html>
+        "
+
 end
