@@ -139,11 +139,6 @@ def delete
 		puts "DELETE STATEMENT HAS BEEN QUERIED!"
 		new_count = mysql_conn.query("SELECT COUNT(*) FROM safeEntry;")
 
-		for i in (($store_id).to_s)...((new_count + 1).to_s)
-			puts (i)
-#			mysql_conn.query("UPDATE safeEntry SET store_id=" + ($store_id + 1).to_s  + " WHERE store_id=" + (i-1).to_s  + ";")
-#			puts "CHANGING STORE ID: " + $store_id + " TO " + (i-1).to_us
-		end
 	end
 	
         mysql_conn.close	
