@@ -239,7 +239,7 @@ def index_template
 				</div>
 			</header>
 			<section>
-				<p>Welcome to the Safe Entry Management Portal(SEMP)! Here you'll be able to access the crowd levels of various shopping malls and buildings. Simply click on the <b>Refresh</b> to update the page with new records. Click <b>Insert</b> to add a new building to the list! And click <b>Delete</b> to remove a building from the list!<br></br><b><i> #LET'S DO OUR PART!</i></b><br><b><i> #SGUNITED!</i></b></br></p>
+				<p>Welcome to the Safe Entry Management Portal(SEMP)! Here you'll be able to access the crowd levels of various shopping malls and buildings. Simply click on the <b>Refresh</b> to update the page with new records. Click <b>Insert</b> to add a new building to the list! And click <b>Delete</b> to remove a building from the list!<br></br><b><i> #SECURITY MADE POSSIBLE</i></b><br><b><i> #SGUNITED!</i></b></br></p>
 				<br>
 				#{$xm}
 				<br>
