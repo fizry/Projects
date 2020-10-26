@@ -222,7 +222,7 @@ def index_template
                 <body>
 			<header>
 				<div class='sg_gov'>
-					<p>A Singapore Governement Agency Website</p>
+					<p>TINDO PTE LTD</p>
 				</div>
 				<div class='safeEntry_directory'>
 					<nav class='nav_bar'>
