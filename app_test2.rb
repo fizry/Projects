@@ -18,8 +18,8 @@ def mysql_conn
 end
 
 #Regex Expression to check if params is integers only!
-def contains_nums(int)
-	int =~ /\d+/
+def contains_nums(string)
+        string.scan(/\D/).empty?
 end
 
 #When /index page is called, mysql_client method is called
@@ -179,9 +179,10 @@ def delete
 		pre_delete_list << row["store_id"].to_s
 	end
 
-	if store_id.empty? != true
+	if store_id.empty? != TRUE
 		store_id_num_check = contains_nums(store_id)
-		if store_id_num_check == 0
+		if store_id_num_check == TRUE
+			puts "STORE ID CONTAINS INTEGERS"
 			mysql_conn.query("DELETE FROM safeEntry WHERE store_id=" + store_id + ";")
 			after_delete = mysql_conn.query("SELECT store_id FROM safeEntry;")
 		
