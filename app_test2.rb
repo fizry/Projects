@@ -103,7 +103,7 @@ def update
 		crowd_limit << row["crowd_limit"].to_s
 	end
 
-	#crowd_level updated with random number between 0 to 1000
+	#generate crowd_level numbers using crowd_limit
 	for i in 0..results.count
 		if crowd_limit[i].to_i <= 5000
 			rand_num = rand 5000
@@ -112,7 +112,8 @@ def update
 		else
 			rand_num = rand 15000
 		end
-
+		
+		#query statement to update crowd_level
 		mysql_conn.query("UPDATE safeEntry SET crowd_level=" + rand_num.to_s + " WHERE store_id=" + (i + 1).to_s + ";")
 	end
 	
@@ -124,6 +125,7 @@ end
 def insert
 	puts "LOADING INSERT SEQUENCE!"
 	
+	#initialization of function variables
 	id_num_list = []
 	limit = $limit.to_s
 	location = $location_name.to_s
@@ -143,7 +145,7 @@ def insert
 		i = i + 1
 	end
 		
-	puts insert_here
+	
 #	if location.empty? != true || limit.empty? != true
 #		limit_num_check = contains_nums(limit)
 #		if limit_num_check == 0
@@ -406,7 +408,7 @@ def about_template
                                 <p>From 12 May onwards, businesses are required to use SafeEntry to collect entry information of employees and visitors on their premises. Businesses that need to retain the use of their current system for the collection of data that are not required in the SafeEntry system (e.g. purpose of visit, employee’s ID number) are required to implement SafeEntry on top of their existing system. To cater to visitors who are not able to scan QR codes or do not have their identification cards with them, businesses are advised to also assist individuals to check in through the manual entry function in SafeEntry using their NRIC, or the webform in SafeEntry with the QR code using any available device.</p>
                                 <br>
                                 <h3>What happens if safeEntry breaks down? Is there flexibility in the enforcement of SafeEntry?</h3>
-				<p>Businesses should tap on the alternate mode of SafeEntry in the unlikely event that their preferred mode breaks down, i.e. use SafeEntry QR as back-up if SafeEntry NRIC is the preferred mode, and vice versa. Businesses may do so by setting up the alternate mode at <a href='https://www.SafeEntry.gov.sg'/>https://www.SafeEntry.gov.sg</a>. SafeEntry does not recommend hard copy form filling as a back-up.
+				<p>Businesses should tap on the alternate mode of SafeEntry in the unlikely event that their preferred mode breaks down, i.e. use SafeEntry QR as back-up if SafeEntry NRIC is the preferred mode, and vice versa. Businesses may do so by setting up the alternate mode at <a href='https://www.SafeEntry.gov.sg'/>SafeEntry.gov.sg</a>. SafeEntry does not recommend hard copy form filling as a back-up.
 
 The common use of SafeEntry by all establishments would allow data to be automatically sent to MOH. Hard copy recording of particulars would present a gap in this automated process and affect the contact tracing process.</p>
                                 </br>
