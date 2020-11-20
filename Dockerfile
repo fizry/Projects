@@ -13,7 +13,9 @@ COPY . /code
 # case we're using it to install our dependencies.
 RUN bundle install
 
+RUN apt-get update
 RUN apt-get -y install iputils-ping
+RUN apt-get -y install vim
 
 # Tell Docker to listen on port 4567.
 EXPOSE 4567
