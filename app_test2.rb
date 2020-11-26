@@ -13,8 +13,6 @@ class MyApp < Sinatra::Base
 
 	get '/' do
 		redirect to("/index")
-		#status, headers, body = call env.merge("PATH_INFO" => '/index')
-		#[status, headers, body.map(&:upcase)]
 	end
 
 	#When /index page is called, mysql_client method is called
@@ -63,7 +61,7 @@ class MyApp < Sinatra::Base
 	#Initialize mysql_conn with mysql database connection
         def mysql_conn
                 client = Mysql2::Client.new(
-				:host => '192.168.80.123',
+				:host => '192.168.80.127',
                                 :username => 'root',
                                 :password => 'toor',
                                 :database => 'internship',
@@ -158,6 +156,7 @@ class MyApp < Sinatra::Base
                 location = $location_name.to_s
                 i = 0
                 insert_here = 0
+		neg_num_list = []
 
                 id_num = mysql_conn.query("SELECT store_id FROM safeEntry;")
 
@@ -173,19 +172,30 @@ class MyApp < Sinatra::Base
                 end
 
 
-                #if location.empty? != true || limit.empty? != true
-                #limit_num_check = contains_nums(limit)
-                #if limit_num_check == 0
-                #if insert_here != 0
-                        #mysql_conn.query("INSERT INTO safeEntry (store_id, store_address, crowd_level , crowd_limit) VALUES(" + insert_here.to_s + ", '"  + location + "', 0, " + limit  + ");")
-                                #puts "STATEMENT A HAS BEEN QUERIED!"
-                #else
-                        #mysql_conn.query("INSERT INTO safeEntry (store_id, store_address, crowd_level, crowd_limit) VALUES(" + (id_num.count + 1).to_s  ", '" + location + ", 0, " + limit + ");")
-                        #puts "STATEMENT B HAS BEEN QUERIED!"
-                #else
-                        #puts "LIMIT DOES NOT CONTAIN INTEGERS"
-                #end
-                #end
+                if location.empty? != TRUE && limit.empty? != TRUE
+                	limit_num_check = contains_nums(limit)
+	                if limit_num_check == TRUE
+				if insert_here != 0
+		                        mysql_conn.query("INSERT INTO safeEntry (store_id, store_address, crowd_level , crowd_limit) VALUES(" + insert_here.to_s + ", '"  + location + "', 0, " + limit  + ");")
+                	                puts "STATEMENT A HAS BEEN QUERIED!"
+		                else
+                 		       mysql_conn.query("INSERT INTO safeEntry (store_id, store_address, crowd_level, crowd_limit) VALUES(" + (id_num.count + 1).to_s + ", '" + location + ", 0, " + limit + ");")
+		                        puts "STATEMENT B HAS BEEN QUERIED!"
+				end
+                	else
+                        	puts "LIMIT DOES NOT CONTAIN INTEGERS"
+                	end
+                end
+		
+		neg_num = mysql_conn.query("SELECT store_id FROM safeEntry WHERE store_id=-1")
+
+		neg_num.each do |row|
+			neg_num_list << row["store_id"].to_s
+		end
+
+		if neg_num_list.any? == true
+			mysql_conn.query("UPDATE safeEntry SET store_id=" + (id_num.count + 1).to_s  + " WHERE store_id=-1;")
+		end
 
                 mysql_conn.close
                 puts "INSERT SEQUENCE LOADED!"
