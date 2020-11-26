@@ -156,6 +156,7 @@ class MyApp < Sinatra::Base
                 location = $location_name.to_s
                 i = 0
                 insert_here = 0
+		neg_num_list = []
 
                 id_num = mysql_conn.query("SELECT store_id FROM safeEntry;")
 
@@ -193,7 +194,7 @@ class MyApp < Sinatra::Base
 		end
 
 		if neg_num_list.any? == true
-			mysql_conn.query("UPDATE safeEntry SET store_id=" + (after_delete_list.count + 1).to_s  + " WHERE store_id=-1;")
+			mysql_conn.query("UPDATE safeEntry SET store_id=" + (id_num.count + 1).to_s  + " WHERE store_id=-1;")
 		end
 
                 mysql_conn.close
