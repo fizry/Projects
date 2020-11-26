@@ -96,8 +96,8 @@ class MyApp < Sinatra::Base
                 table_arr = []
 
                 #Query results from safeEntry
-                results = mysql_conn.query("SELECT * FROM safeEntry ORDER BY crowd_level ASC;")
-                #results = mysql_conn.query("SELECT * FROM safeEntry ORDER BY store_id ASC;")
+                #results = mysql_conn.query("SELECT * FROM safeEntry ORDER BY crowd_level ASC;")
+                results = mysql_conn.query("SELECT * FROM safeEntry ORDER BY store_id ASC;")
 
                 #Store each result entry into dictionary before being stored in table_arr
                 results.each do |row|
