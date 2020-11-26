@@ -185,6 +185,16 @@ class MyApp < Sinatra::Base
                         	puts "LIMIT DOES NOT CONTAIN INTEGERS"
                 	end
                 end
+		
+		neg_num = mysql_conn.query("SELECT store_id FROM safeEntry WHERE store_id=-1")
+
+		neg_num.each do |row|
+			neg_num_list << row["store_id"].to_s
+		end
+
+		if neg_num_list.any? == true
+			mysql_conn.query("UPDATE safeEntry SET store_id=" + (after_delete_list.count + 1).to_s  + " WHERE store_id=-1;")
+		end
 
                 mysql_conn.close
                 puts "INSERT SEQUENCE LOADED!"
