@@ -13,8 +13,6 @@ class MyApp < Sinatra::Base
 
 	get '/' do
 		redirect to("/index")
-		#status, headers, body = call env.merge("PATH_INFO" => '/index')
-		#[status, headers, body.map(&:upcase)]
 	end
 
 	#When /index page is called, mysql_client method is called
@@ -173,19 +171,20 @@ class MyApp < Sinatra::Base
                 end
 
 
-                #if location.empty? != true || limit.empty? != true
-                #limit_num_check = contains_nums(limit)
-                #if limit_num_check == 0
-                #if insert_here != 0
-                        #mysql_conn.query("INSERT INTO safeEntry (store_id, store_address, crowd_level , crowd_limit) VALUES(" + insert_here.to_s + ", '"  + location + "', 0, " + limit  + ");")
-                                #puts "STATEMENT A HAS BEEN QUERIED!"
-                #else
-                        #mysql_conn.query("INSERT INTO safeEntry (store_id, store_address, crowd_level, crowd_limit) VALUES(" + (id_num.count + 1).to_s  ", '" + location + ", 0, " + limit + ");")
-                        #puts "STATEMENT B HAS BEEN QUERIED!"
-                #else
-                        #puts "LIMIT DOES NOT CONTAIN INTEGERS"
-                #end
-                #end
+                if location.empty? != TRUE && limit.empty? != TRUE
+                	limit_num_check = contains_nums(limit)
+	                if limit_num_check == TRUE
+				if insert_here != 0
+		                        mysql_conn.query("INSERT INTO safeEntry (store_id, store_address, crowd_level , crowd_limit) VALUES(" + insert_here.to_s + ", '"  + location + "', 0, " + limit  + ");")
+                	                puts "STATEMENT A HAS BEEN QUERIED!"
+		                else
+                 		       mysql_conn.query("INSERT INTO safeEntry (store_id, store_address, crowd_level, crowd_limit) VALUES(" + (id_num.count + 1).to_s + ", '" + location + ", 0, " + limit + ");")
+		                        puts "STATEMENT B HAS BEEN QUERIED!"
+				end
+                	else
+                        	puts "LIMIT DOES NOT CONTAIN INTEGERS"
+                	end
+                end
 
                 mysql_conn.close
                 puts "INSERT SEQUENCE LOADED!"
