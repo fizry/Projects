@@ -174,7 +174,7 @@ class MyApp < Sinatra::Base
                 if location.empty? != TRUE && limit.empty? != TRUE
                 	limit_num_check = contains_nums(limit)
 	                if limit_num_check == TRUE
-				if insert_here == 0
+				if insert_here != 0
 		                        mysql_conn.query("INSERT INTO safeEntry (store_id, store_address, crowd_level , crowd_limit) VALUES(" + insert_here.to_s + ", '"  + location + "', 0, " + limit  + ");")
                 	                puts "STATEMENT A HAS BEEN QUERIED!"
 		                else
