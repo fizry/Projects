@@ -10,6 +10,9 @@ require 'socket'
 class MyApp < Sinatra::Base
 	set :bind, "0.0.0.0"
 	set :port, "4567"
+	set :raise_errors, false
+	set :show_exceptions, false
+
 
 	get '/' do
 		redirect to("/index")
@@ -57,6 +60,15 @@ class MyApp < Sinatra::Base
 	get "/runAbout" do
         	about_template
 	end
+
+	error do
+		redirect to('/')
+	end
+
+	error 404 do
+		redirect to('/')
+	end
+
 
 	#Initialize mysql_conn with mysql database connection
         def mysql_conn
