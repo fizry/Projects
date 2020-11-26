@@ -96,8 +96,8 @@ class MyApp < Sinatra::Base
                 table_arr = []
 
                 #Query results from safeEntry
-                #results = mysql_conn.query("SELECT * FROM safeEntry ORDER BY crowd_level ASC;")
-                results = mysql_conn.query("SELECT * FROM safeEntry ORDER BY store_id ASC;")
+                results = mysql_conn.query("SELECT * FROM safeEntry ORDER BY crowd_level ASC;")
+                #results = mysql_conn.query("SELECT * FROM safeEntry ORDER BY store_id ASC;")
 
                 #Store each result entry into dictionary before being stored in table_arr
                 results.each do |row|
@@ -174,7 +174,7 @@ class MyApp < Sinatra::Base
                 if location.empty? != TRUE && limit.empty? != TRUE
                 	limit_num_check = contains_nums(limit)
 	                if limit_num_check == TRUE
-				if insert_here != 0
+				if insert_here == 0
 		                        mysql_conn.query("INSERT INTO safeEntry (store_id, store_address, crowd_level , crowd_limit) VALUES(" + insert_here.to_s + ", '"  + location + "', 0, " + limit  + ");")
                 	                puts "STATEMENT A HAS BEEN QUERIED!"
 		                else
