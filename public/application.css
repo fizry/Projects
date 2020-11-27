@@ -59,6 +59,10 @@ section {
 	font-size: 20px;
 }
 
+div {
+	margin-bottom: 10px
+}
+
 label {
         display: inline-block;
         width: 110px;
