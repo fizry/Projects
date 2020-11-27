@@ -66,7 +66,7 @@ class MyApp < Sinatra::Base
 	end
 
 	error 404 do
-		redirect to('/')
+		page_not_found_template
 	end
 
 
@@ -544,4 +544,43 @@ The common use of SafeEntry by all establishments would allow data to be automat
                 "
 
         end
+
+	def page_not_found_template
+	       	"
+                <html>
+                         <head>
+                                <meta charset='utf-8'>
+                                <link rel='stylesheet' type='text/css' href='/application.css'/>
+                                <title>SEMP - Insert Page</title>
+
+                        </head>
+                        <body>
+                                <header>
+                                        <div class='sg_gov'>
+                                                <p>A Singapore Governement Agency Website</p>
+                                        </div>
+                                        <div class='safeEntry_directory'>
+                                                <nav class='nav_bar'>
+                                                        <a class='safeEntry_img' href='/index'>
+                                                                <img src='https://www.ndi-api.gov.sg/assets/img/safe-entry/SafeEntry_logo_inline.png' alt='Safe Entry Logo'/>
+                                                        </a>
+                                                        <ul>
+                                                                <li><a href='/runDelete'>Delete</a></li>
+                                                                <li><a href='/runInsert'>Insert</a></li>
+                                                                <li><a href='/runUpdate'>Refresh</a></li>
+                                                                <li><a href='/runAbout'>About</a></li>
+                                                        </ul>
+                                                </nav>
+                                        </div>
+                                </header>
+                                <section>
+					<h1>404 - PAGE NOT FOUND!</h1>
+					<br>
+					<p>I'm sorry. It seems that the page you are looking for is not available.</p>
+					<br>
+				</section>
+			</body>
+		</html>
+		"
+	end
 end
