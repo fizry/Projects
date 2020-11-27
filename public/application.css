@@ -58,3 +58,12 @@ section {
 	margin-left: 15px; 
 	font-size: 20px;
 }
+
+label {
+        display: inline-block;
+        width: 110px;
+        color: #777777;
+}
+input {
+       padding: 5px 10px;
+}

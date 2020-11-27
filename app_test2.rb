@@ -344,8 +344,10 @@ class MyApp < Sinatra::Base
                                         <h1>Welcome to Safe Entry Insert Page</h1>
                                         <p>Please state the name of the store followed by the crowd limit!</p>
                                         <form method='post' action='/runInsert' name='Form' OnSubmit='return validateForm()'>
-                                                Store Name: <input type='text' name='location'><br></br>
-                                                Crowd Limits: <input type='text' name='limit'><br></br>
+						<label for='location'>Store Name:</label>
+                                                <input type='text' name='location'><br></br>
+						<label for='limit'>Crowd Limits:</label>
+                                                <input type='text' name='limit'><br></br>
                                                 <button type='submit' value='Submit'>Submit</button>
                                                 <a href='/index'>
                                                         <input type='button' value='Back'>
@@ -399,7 +401,8 @@ class MyApp < Sinatra::Base
                                         #{$xm}
                                         <br>
                                         <form method='post' name='Form' onSubmit='return validateForm()' action='/runDelete'>
-                                                Store ID: <input type='text' name='store_id'><br></br></br>
+						<label for='store_id'>Store ID:</label>
+                                                <input type='text' name='store_id'><br></br></br>
                                                 <button type='submit' value='Submit'>Submit</button>
                                                 <a href='/index'>
                                                         <input type='button' value='Back'>
