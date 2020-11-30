@@ -295,8 +295,20 @@ class MyApp < Sinatra::Base
                                         <br>
                                         #{$xm}
                                         <br>
+					<p>Arrange according to:</p>
+					<br>
+					<form method='post' action='/runInsert' name='Form' OnSubmit='return validateForm()'>
+						<input type='radio' id='' name='order' value='location_id'>
+						<label for='order'>Location ID</label>
+						<input type='radio' id='' name='order' value='store_location'>
+						<label for='order'>Store Location</label><br>
+						<input type='radio' id='' name='order' value='crowd_limit'>
+						<label for='order'>Crowd Limit</label><br>
+						<input type='radio' id='' name='order' value='mall_limit'>
+						<label for='order'>Mall Limit</label><br>
+					</form>
                                         #{'Last Updated: ' + Time.now.ctime}
-                                        </br></br>
+                                        </br></br></br>
                                 </section>
                         </body>
                 </html>
