@@ -296,16 +296,16 @@ class MyApp < Sinatra::Base
                                         #{$xm}
                                         <br>
 					#{'Last Updated: ' + Time.now.ctime}
-					<p>Arrange according to:</p>
-					<form method='post' action='/runInsert' name='Form' OnSubmit='return validateForm()'>
-						<input type='radio' id='' name='order' value='location_id'>
+					<form method='post' action='/runInsert' name='Form'>
+						<p>Arrange according to: </p>
+						<input type='radio' id='' name='order' value='location_id' checked='checked'>
 						<label for='order'>Location ID</label>
 						<input type='radio' id='' name='order' value='store_location'>
-						<label for='order'>Store Location</label><br>
+						<label for='order'>Store Location</label>
 						<input type='radio' id='' name='order' value='crowd_limit'>
-						<label for='order'>Crowd Limit</label><br>
+						<label for='order'>Crowd Limit</label>
 						<input type='radio' id='' name='order' value='mall_limit'>
-						<label for='order'>Mall Limit</label><br>
+						<label for='order'>Mall Limit</label>
 					</form>
                                         </br></br></br>
                                 </section>
