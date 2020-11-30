@@ -107,20 +107,12 @@ class MyApp < Sinatra::Base
         def mysql_client
                 puts "LOADING BOOT PROGRAM!"
                 table_arr = []
-		order = $order_form
+		order = $order_form.to_s
 
                 #Query results from safeEntry
                 #results = mysql_conn.query("SELECT * FROM safeEntry ORDER BY crowd_level ASC;")
-		if (order == 'store_location')
-			results = mysql_conn.query("SELECT * FROM safeEntry ORDER BY store_address;")
-		elsif (order == 'crowd_limit')
-			results = mysql_conn.query("SELECT * FROM safeEntry ORDER BY crowd_level;")
-		elsif (order == 'mall_limit')
-			results = mysql_conn.query("SELECT * FROM safeEntry ORDER BY crowd_limit;")
-		else
-			results = mysql_conn.query("SELECT * FROM safeEntry ORDER BY store_id;")
-		end
-
+		results = mysql_conn.query("SELECT * FROM safeEntry ORDER BY " + order + ";")
+		
                 #Store each result entry into dictionary before being stored in table_arr
                 results.each do |row|
                         table_arr << {"Location ID" => row["store_id"].to_s, "Location" => row["store_address"], "Crowd Level" => row["crowd_level"].to_s, "Mall Limit" => row["crowd_limit"].to_s}
@@ -311,14 +303,14 @@ class MyApp < Sinatra::Base
                                         <br>
 					<form method='post' action='/runUpdate' name='order_form' id='order_form'>
 						<p>Arrange according to: </p>
-						<input type='radio' id='' name='order' value='location_id' checked='checked'>
+						<input type='radio' id='' name='order' value='store_id' checked='checked'>
 						<label for='order'>Location ID</label>
-						<input type='radio' id='' name='order' value='store_location'>
+						<input type='radio' id='' name='order' value='store_address'>
 						<label for='order'>Store Location</label>
+						<input type='radio' id='' name='order' value='crowd_level'>
+						<label for='order'>Crowd Levels</label>
 						<input type='radio' id='' name='order' value='crowd_limit'>
-						<label for='order'>Crowd Limit</label>
-						<input type='radio' id='' name='order' value='mall_limit'>
-						<label for='order'>Mall Limit</label>
+						<label for='order'>Crowd Limits</label>
 					</form>
                                         #{$xm}
                                         <br>
