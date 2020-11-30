@@ -111,6 +111,7 @@ class MyApp < Sinatra::Base
 		
 		if order.empty? == TRUE
 			order = "store_id"
+		end
 
                 #Query results from safeEntry
                 #results = mysql_conn.query("SELECT * FROM safeEntry ORDER BY crowd_level ASC;")
