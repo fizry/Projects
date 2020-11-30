@@ -78,7 +78,7 @@ class MyApp < Sinatra::Base
                                 :username => 'root',
                                 :password => 'toor',
                                 :database => 'internship',
-				:reconnect => TRUE,
+				:reconnect => true,
                                 :encoding => 'utf8'
                         )
                 return client
