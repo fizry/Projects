@@ -20,6 +20,7 @@ class MyApp < Sinatra::Base
 
 	#When /index page is called, mysql_client method is called
 	get "/index" do
+		$order_form = params[:order_form]
         	mysql_client
 	        index_template
 	end	
@@ -106,11 +107,16 @@ class MyApp < Sinatra::Base
         def mysql_client
                 puts "LOADING BOOT PROGRAM!"
                 table_arr = []
+		order = $order_form.to_s
+		
+		if order.empty? == TRUE
+			order = "store_id"
+		end
 
                 #Query results from safeEntry
                 #results = mysql_conn.query("SELECT * FROM safeEntry ORDER BY crowd_level ASC;")
-                results = mysql_conn.query("SELECT * FROM safeEntry ORDER BY store_id ASC;")
-
+		results = mysql_conn.query("SELECT * FROM safeEntry ORDER BY " + order + ";")
+		
                 #Store each result entry into dictionary before being stored in table_arr
                 results.each do |row|
                         table_arr << {"Location ID" => row["store_id"].to_s, "Location" => row["store_address"], "Crowd Level" => row["crowd_level"].to_s, "Mall Limit" => row["crowd_limit"].to_s}
@@ -142,9 +148,9 @@ class MyApp < Sinatra::Base
 
         #generate crowd_level numbers using crowd_limit
         for i in 0..results.count
-                if crowd_limit[i].to_i <= 5000
+                if (crowd_limit[i].to_i <= 5000)
                         rand_num = rand 5000
-                elsif crowd_limit[i].to_i <= 10000
+                elsif (crowd_limit[i].to_i <= 10000)
                         rand_num = rand 10000
                 else
                         rand_num = rand 15000
@@ -270,6 +276,12 @@ class MyApp < Sinatra::Base
                                 <meta charset='utf-8'>
                                 <link rel='stylesheet' type='text/css' href='/application.css'/>
                                 <title>Safe Entry Management Portal</title>
+				<script>
+					function autoSubmit(){
+						var formObject = document.forms['order_form'];
+						formObject.submit();
+					}
+				</script>
                         </head>
                         <body>
                                 <header>
@@ -293,10 +305,21 @@ class MyApp < Sinatra::Base
                                 <section>
                                         <p>Welcome to the Safe Entry Management Portal(SEMP)! Here you'll be able to access the crowd levels of various shopping malls and buildings. Simply click on the <b>Refresh</b> to update the page with new records. Click <b>Insert</b> to add a new building to the list! And click <b>Delete</b> to remove a building from the list!<br></br><b><i> #SGCLEAN</i></b><br><b><i> #SGUNITED!</i></b></br></p>
                                         <br>
+					<form method='post' action='/runUpdate' name='order_form' id='order_form'>
+						<p>Arrange according to: </p>
+						<input type='radio' id='' name='order' value='store_id' checked='checked'>
+						<label for='order'>Location ID</label>
+						<input type='radio' id='' name='order' value='store_address'>
+						<label for='order'>Store Location</label>
+						<input type='radio' id='' name='order' value='crowd_level'>
+						<label for='order'>Crowd Levels</label>
+						<input type='radio' id='' name='order' value='crowd_limit'>
+						<label for='order'>Crowd Limits</label>
+					</form>
                                         #{$xm}
                                         <br>
                                         #{'Last Updated: ' + Time.now.ctime}
-                                        </br></br>
+                                        </br></br></br>
                                 </section>
                         </body>
                 </html>
