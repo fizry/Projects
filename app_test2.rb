@@ -108,6 +108,9 @@ class MyApp < Sinatra::Base
                 puts "LOADING BOOT PROGRAM!"
                 table_arr = []
 		order = $order_form.to_s
+		
+		if order.empty? == TRUE
+			order = "store_id"
 
                 #Query results from safeEntry
                 #results = mysql_conn.query("SELECT * FROM safeEntry ORDER BY crowd_level ASC;")
