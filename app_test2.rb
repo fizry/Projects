@@ -312,7 +312,7 @@ class MyApp < Sinatra::Base
                                 <title>SEMP - Insert Page</title>
 				<style>
 					input[type=button], input[type=submit]{
-					        background-color: #4CAF50;
+					        background-color: #99ccff;
 						border: none;
         					color: white;
         					padding: 10px 26px;
@@ -377,7 +377,7 @@ class MyApp < Sinatra::Base
                                 <title>SEMP - Delete Page</title>
 				<style>
 					input[type=button], input[type=submit]{
-					        background-color: #4CAF50;
+					        background-color: #99ccff;
 					        border: none;
 					        color: white;
 					        padding: 10px 26px;
