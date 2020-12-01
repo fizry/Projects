@@ -313,6 +313,17 @@ class MyApp < Sinatra::Base
                                 <meta charset='utf-8'>
                                 <link rel='stylesheet' type='text/css' href='/application.css'/>
                                 <title>SEMP - Insert Page</title>
+				<style>
+					input[type=button], input[type=submit]{
+						background-color: #b3b3b3;
+						border: none;
+						color: white;
+						padding: 10px 26px;
+						text-decoration: none;
+						margin: 4px 2px;
+						cursor: pointer;
+					}
+				</style>
                                 <script>
                                         function validateForm() {
                                                  var x = document.forms['Form']['location'].value;
@@ -369,6 +380,17 @@ class MyApp < Sinatra::Base
                                 <meta charset='utf-8'>
                                 <link rel='stylesheet' type='text/css' href='/application.css'/>
                                 <title>SEMP - Delete Page</title>
+				<style>
+					input[type=button], input[type=submit]{
+						background-color: #b3b3b3;
+						border: none;
+						color: white;
+						padding: 10px 26px;
+						text-decoration: none;
+						margin: 4px 2px;
+						cursor: pointer;
+					}
+				</style>
 				<script>
                                         function validateForm() {
                                                  var x = document.forms['Form']['store_id'].value;
