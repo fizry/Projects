@@ -358,8 +358,10 @@ class MyApp < Sinatra::Base
                                         <h1>Welcome to Safe Entry Insert Page</h1>
                                         <p>Please state the name of the store followed by the crowd limit!</p>
                                         <form method='post' action='/runInsert' name='Form' OnSubmit='return validateForm()'>
-                                                Store Name: <input type='text' name='location'><br></br>
-                                                Crowd Limits: <input type='text' name='limit'><br></br>
+						<label for='location'>Store Name:</label>
+                                                <input type='text' name='location'><br></br>
+                                                <label for='location'>Crowd Limits:</label>
+						<input type='text' name='limit'><br></br>
                                                 <input type='submit' value='Submit'>
 						<a href='/index'>
                                                         <input type='button' value='Back'>
@@ -380,7 +382,7 @@ class MyApp < Sinatra::Base
                                 <title>SEMP - Delete Page</title>
 				<style>
 					input[type=button], input[type=submit]{
-					        background-color: ;#b3b3b3;
+					        background-color: #b3b3b3;
 					        border: none;
 					        color: white;
 					        padding: 10px 26px;
