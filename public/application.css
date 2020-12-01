@@ -7,8 +7,6 @@ body {
 table, td, tr, th { 
 	border: 1px solid black;
 	border-collapse: collapse;
-	margin-left: auto;
-	margin-right: auto;
 	width: 550px;
 	text-align: center;
 }
@@ -21,7 +19,8 @@ table, td, tr, th {
 }
 .sg_gov p {
 	padding-left: 90px; 
-	padding-top: 5px;
+	padding-top: 2.5px;
+	padding-bottom: 2.5px;
 }
 .safeEntry_img img {
 	position: absolute; 
