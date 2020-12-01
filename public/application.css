@@ -61,7 +61,13 @@ section {
 	font-size: 20px;
 }
 
-label {
-	display: inline-block;
-
+input[type=button], input[type=submit]{
+	background-color: #b3b3b3;
+	border: none;
+	color: white;
+	padding: 10px 26px;
+	text-decoration: none;
+	margin: 4px 2px;
+	cursor: pointer;
 }
+
