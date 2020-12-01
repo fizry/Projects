@@ -277,7 +277,7 @@ class MyApp < Sinatra::Base
                         <body>
                                 <header>
                                         <div class='sg_gov'>
-                                                <p>A Singapore Government Website</p>
+                                                <label>A Singapore Government Website</label>
                                         </div>
                                         <div class='safeEntry_directory'>
                                                 <nav class='nav_bar'>
@@ -338,8 +338,8 @@ class MyApp < Sinatra::Base
                         <body>
                                 <header>
                                         <div class='sg_gov'>
-                                                <p>A Singapore Governement Agency Website</p>
-                                        </div>
+                                                <label>A Singapore Governement Agency Website</label>
+					</div>
                                         <div class='safeEntry_directory'>
                                                 <nav class='nav_bar'>
                                                         <a class='safeEntry_img' href='/index'>
@@ -404,7 +404,7 @@ class MyApp < Sinatra::Base
                         <body>
                                 <header>
                                         <div class='sg_gov'>
-                                                <p>A Singapore Governement Agency Website</p>
+                                                <label>A Singapore Governement Agency Website</label>
                                         </div>
                                         <div class='safeEntry_directory'>
                                                 <nav class='nav_bar'>
@@ -448,6 +448,7 @@ class MyApp < Sinatra::Base
 				<style>
 					h1, h3 {text-align: center;}
 					p {text-align: center;}
+					sg_gov lable {padding-top: 5px; padding-bottom: 5px; padding-left: 90px;}
 				</style>
 
                         </head>
@@ -504,12 +505,23 @@ The common use of SafeEntry by all establishments would allow data to be automat
                                 <meta charset='utf-8'>
                                 <link rel='stylesheet' type='text/css' href='/application.css'/>
                                 <title>SEMP - Insert Page</title>
+				<style>
+                                        input[type=submit]{
+                                                background-color: #b3b3b3;
+                                                border: none;
+                                                color: white;
+                                                padding: 10px 26px;
+                                                text-decoration: none;
+                                                margin: 4px 2px;
+                                                cursor: pointer;
+                                        }
+				</style>
 
                         </head>
                         <body>
                                 <header>
                                         <div class='sg_gov'>
-                                                <p>A Singapore Governement Agency Website</p>
+                                                <label>A Singapore Governement Agency Website</label>
                                         </div>
                                         <div class='safeEntry_directory'>
                                                 <nav class='nav_bar'>
@@ -548,7 +560,7 @@ The common use of SafeEntry by all establishments would allow data to be automat
                         <body>
                                 <header>
                                         <div class='sg_gov'>
-                                                <p>A Singapore Governement Agency Website</p>
+                                                <label>A Singapore Governement Agency Website</label>
                                         </div>
                                         <div class='safeEntry_directory'>
                                                 <nav class='nav_bar'>
@@ -584,7 +596,7 @@ The common use of SafeEntry by all establishments would allow data to be automat
                         <body>
                                 <header>
                                         <div class='sg_gov'>
-                                                <p>A Singapore Governement Agency Website</p>
+                                                <label>A Singapore Governement Agency Website</label>
                                         </div>
                                         <div class='safeEntry_directory'>
                                                 <nav class='nav_bar'>
