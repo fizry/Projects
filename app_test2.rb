@@ -454,7 +454,7 @@ class MyApp < Sinatra::Base
                         <body>
                                 <header>
                                         <div class='sg_gov'>
-                                                <p>A Singapore Governement Agency Website</p>
+                                                <label>A Singapore Governement Agency Website</label>
                                         </div>
                                         <div class='safeEntry_directory'>
                                                 <nav class='nav_bar'>
