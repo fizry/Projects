@@ -296,7 +296,9 @@ class MyApp < Sinatra::Base
                                 <section>
                                         <p>Welcome to the Safe Entry Management Portal(SEMP)! Here you'll be able to access the crowd levels of various shopping malls and buildings. Simply click on the <b>Refresh</b> to update the page with new records. Click <b>Insert</b> to add a new building to the list! And click <b>Delete</b> to remove a building from the list!<br></br><b><i> #SGCLEAN</i></b><br><b><i> #SGUNITED!</i></b></br></p>
                                         <br>
-                                        #{$xm}
+					<table style='border:1px solid black;margin-left:auto;margin-right:auto;'>
+                                        	#{$xm}
+					</table>
                                         <br>
                                         #{'Last Updated: ' + Time.now.ctime}
                                         </br></br>
