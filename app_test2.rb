@@ -448,7 +448,6 @@ class MyApp < Sinatra::Base
 				<style>
 					h1, h3 {text-align: center;}
 					p {text-align: center;}
-					sg_gov label {padding-top: 5px; padding-bottom: 5px; padding-left: 90px;}
 				</style>
 
                         </head>
