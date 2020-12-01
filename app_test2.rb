@@ -357,8 +357,8 @@ class MyApp < Sinatra::Base
                                         <form method='post' action='/runInsert' name='Form' OnSubmit='return validateForm()'>
                                                 Store Name: <input type='text' name='location'><br></br>
                                                 Crowd Limits: <input type='text' name='limit'><br></br>
-                                                <button type='submit' value='Submit'>Submit</button>
-                                                <a href='/index'>
+                                                <input type='submit' value='Submit'>
+						<a href='/index'>
                                                         <input type='button' value='Back'>
                                                 </a>
                                         </form>
@@ -422,7 +422,7 @@ class MyApp < Sinatra::Base
                                         <br>
                                         <form method='post' name='Form' onSubmit='return validateForm()' action='/runDelete'>
                                                 Store ID: <input type='text' name='store_id'><br></br></br>
-                                                <button type='submit' value='Submit'>Submit</button>
+                                                <input type='submit' value='Submit'>
                                                 <a href='/index'>
                                                         <input type='button' value='Back'>
                                                 </a>
