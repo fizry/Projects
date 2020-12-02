@@ -39,11 +39,14 @@ table, td, tr, th {
 .container {
 	width: 500px;
 	clear: both;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .container input{
 	width: 100%;
 	clear: both;
+
 }
 
 nav {
