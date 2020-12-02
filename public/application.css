@@ -9,6 +9,8 @@ table, td, tr, th {
 	border-collapse: collapse;
 	width: 550px;
 	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .sg_gov { 

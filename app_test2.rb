@@ -270,14 +270,14 @@ class MyApp < Sinatra::Base
                                 <meta charset='utf-8'>
                                 <link rel='stylesheet' type='text/css' href='/application.css'/>
                                 <title>Safe Entry Management Portal</title>
-				<script>
+				<style>
 					p {text-align: center;}
-				</script>
+				</style>
                         </head>
                         <body>
                                 <header>
                                         <div class='sg_gov'>
-                                                <label>A Singapore Government Website</label>
+                                                <label>A Singapore Government Agency Website</label>
                                         </div>
                                         <div class='safeEntry_directory'>
                                                 <nav class='nav_bar'>
