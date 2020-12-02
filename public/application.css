@@ -35,6 +35,17 @@ table, td, tr, th {
 	width: 200px; 
 	height: 40;
 }
+
+.container {
+	width: 500px;
+	clear: both;
+}
+
+.container input{
+	width: 100%;
+	clear: both;
+}
+
 nav {
 	width: 100%; 
 	background: #FFFFFF; 
@@ -66,6 +77,3 @@ section {
 	margin-left: 15px; 
 	font-size: 20px;
 }
-
-
-

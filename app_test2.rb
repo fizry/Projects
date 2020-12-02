@@ -359,16 +359,18 @@ class MyApp < Sinatra::Base
                                 <section>
                                         <h1>Welcome to Safe Entry Insert Page</h1>
                                         <p>Please state the name of the store followed by the crowd limit!</p>
-                                        <form method='post' action='/runInsert' name='Form' OnSubmit='return validateForm()'>
-						<label for='location'>Store Name:</label>
-                                                <input type='text' name='location'><br></br>
-                                                <label for='location'>Crowd Limits:</label>
-						<input type='text' name='limit'><br></br>
-                                                <input type='submit' value='Submit'>
-						<a href='/index'>
-                                                        <input type='button' value='Back'>
-                                                </a>
-                                        </form>
+					<div class='container'>
+	                                        <form method='post' action='/runInsert' name='Form' OnSubmit='return validateForm()'>
+							<label for='location'>Store Name:</label>
+                		                        <input type='text' name='location'><br></br>
+                                	                <label for='location'>Crowd Limits:</label>
+							<input type='text' name='limit'><br></br>
+                                        	        <input type='submit' value='Submit'>
+							<a href='/index'>
+                                                        	<input type='button' value='Back'>
+	                                                </a>
+	                                        </form>
+					</div>
                                 </section>
                         </body>
                 </html>
