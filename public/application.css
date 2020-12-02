@@ -80,3 +80,18 @@ section {
 	margin-left: 15px; 
 	font-size: 20px;
 }
+
+input[type=button], input[type=submit]{
+	background-color: #b3b3b3;
+	border: none;
+	color: white;
+	padding: 10px 26px;
+	text-decoration: none;
+	margin: 4px 2px;
+	cursor: pointer;
+}
+
+p {
+	text-align: center;
+}
+
