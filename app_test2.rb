@@ -296,7 +296,9 @@ class MyApp < Sinatra::Base
                                 <section>
                                         <p>Welcome to the Safe Entry Management Portal(SEMP)! Here you'll be able to access the crowd levels of various shopping malls and buildings. Simply click on the <b>Refresh</b> to update the page with new records. Click <b>Insert</b> to add a new building to the list! And click <b>Delete</b> to remove a building from the list!<br></br><b><i> #SGCLEAN</i></b><br><b><i> #SGUNITED!</i></b></br></p>
                                         <br>
-	                         	#{$xm}
+					<div class='center'>
+						#{$xm}
+					</div>
                                         <br>
                                         #{'Last Updated: ' + Time.now.ctime}
                                         </br></br>
@@ -338,7 +340,7 @@ class MyApp < Sinatra::Base
                         <body>
                                 <header>
                                         <div class='sg_gov'>
-                                                <label>A Singapore Governement Agency Website</label>
+                                                <label>A Singapore Government Agency Website</label>
 					</div>
                                         <div class='safeEntry_directory'>
                                                 <nav class='nav_bar'>
@@ -404,7 +406,7 @@ class MyApp < Sinatra::Base
                         <body>
                                 <header>
                                         <div class='sg_gov'>
-                                                <label>A Singapore Governement Agency Website</label>
+                                                <label>A Singapore Government Agency Website</label>
                                         </div>
                                         <div class='safeEntry_directory'>
                                                 <nav class='nav_bar'>
@@ -454,7 +456,7 @@ class MyApp < Sinatra::Base
                         <body>
                                 <header>
                                         <div class='sg_gov'>
-                                                <label>A Singapore Governement Agency Website</label>
+                                                <label>A Singapore Government Agency Website</label>
                                         </div>
                                         <div class='safeEntry_directory'>
                                                 <nav class='nav_bar'>
@@ -520,7 +522,7 @@ The common use of SafeEntry by all establishments would allow data to be automat
                         <body>
                                 <header>
                                         <div class='sg_gov'>
-                                                <label>A Singapore Governement Agency Website</label>
+                                                <label>A Singapore Government Agency Website</label>
                                         </div>
                                         <div class='safeEntry_directory'>
                                                 <nav class='nav_bar'>
@@ -559,7 +561,7 @@ The common use of SafeEntry by all establishments would allow data to be automat
                         <body>
                                 <header>
                                         <div class='sg_gov'>
-                                                <label>A Singapore Governement Agency Website</label>
+                                                <label>A Singapore Government Agency Website</label>
                                         </div>
                                         <div class='safeEntry_directory'>
                                                 <nav class='nav_bar'>
@@ -595,7 +597,7 @@ The common use of SafeEntry by all establishments would allow data to be automat
                         <body>
                                 <header>
                                         <div class='sg_gov'>
-                                                <label>A Singapore Governement Agency Website</label>
+                                                <label>A Singapore Government Agency Website</label>
                                         </div>
                                         <div class='safeEntry_directory'>
                                                 <nav class='nav_bar'>
