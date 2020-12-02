@@ -325,7 +325,8 @@ class MyApp < Sinatra::Base
 						margin: 4px 2px;
 						cursor: pointer;
 					}
-					p, h1 {text-align = center;}
+					h1 {text-align: center;}
+					p {text-align: center;}
 				</style>
                                 <script>
                                         function validateForm() {
