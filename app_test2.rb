@@ -325,6 +325,7 @@ class MyApp < Sinatra::Base
 						margin: 4px 2px;
 						cursor: pointer;
 					}
+					p, h1 {text-align = center;}
 				</style>
                                 <script>
                                         function validateForm() {
@@ -430,11 +431,12 @@ class MyApp < Sinatra::Base
                                         #{$xm}
                                         <br>
                                         <form method='post' name='Form' onSubmit='return validateForm()' action='/runDelete'>
-                                                Store ID: <input type='text' name='store_id'><br></br></br>
-                                                <input type='submit' value='Submit'>
-                                                <a href='/index'>
-                                                        <input type='button' value='Back'>
-                                                </a>
+       	                                        <label for='store_id'>Store ID</label>
+						<input type='text' name='store_id'><br></br></br>
+               	                                <input type='submit' value='Submit'>
+                       	                        <a href='/index'>
+                               	                        <input type='button' value='Back'>
+                                       	        </a>
                                         </form>
                                 </section>
                         </body>
