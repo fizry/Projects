@@ -277,7 +277,7 @@ class MyApp < Sinatra::Base
                         <body>
                                 <header>
                                         <div class='sg_gov'>
-                                                <label>A Singapore Government Agency Website</label>
+                                                <label>SafeEntry Test Page</label>
                                         </div>
                                         <div class='safeEntry_directory'>
                                                 <nav class='nav_bar'>
@@ -340,7 +340,7 @@ class MyApp < Sinatra::Base
                         <body>
                                 <header>
                                         <div class='sg_gov'>
-                                                <label>A Singapore Government Agency Website</label>
+                                                <label>SafeEntry Test Page</label>
 					</div>
                                         <div class='safeEntry_directory'>
                                                 <nav class='nav_bar'>
@@ -406,7 +406,7 @@ class MyApp < Sinatra::Base
                         <body>
                                 <header>
                                         <div class='sg_gov'>
-                                                <label>A Singapore Government Agency Website</label>
+                                                <label>SafeEntry Test Page</label>
                                         </div>
                                         <div class='safeEntry_directory'>
                                                 <nav class='nav_bar'>
@@ -456,7 +456,7 @@ class MyApp < Sinatra::Base
                         <body>
                                 <header>
                                         <div class='sg_gov'>
-                                                <label>A Singapore Government Agency Website</label>
+                                                <label>SafeEntry Test Page</label>
                                         </div>
                                         <div class='safeEntry_directory'>
                                                 <nav class='nav_bar'>
@@ -522,8 +522,8 @@ The common use of SafeEntry by all establishments would allow data to be automat
                         <body>
                                 <header>
                                         <div class='sg_gov'>
-                                                <label>A Singapore Government Agency Website</label>
-                                        </div>
+                                                <label>SafeEntry Test Page</label>
+					</div>
                                         <div class='safeEntry_directory'>
                                                 <nav class='nav_bar'>
                                                         <a class='safeEntry_img' href='/index'>
@@ -561,7 +561,7 @@ The common use of SafeEntry by all establishments would allow data to be automat
                         <body>
                                 <header>
                                         <div class='sg_gov'>
-                                                <label>A Singapore Government Agency Website</label>
+                                                <label>SafeEntry Test Page</label>
                                         </div>
                                         <div class='safeEntry_directory'>
                                                 <nav class='nav_bar'>
@@ -597,7 +597,7 @@ The common use of SafeEntry by all establishments would allow data to be automat
                         <body>
                                 <header>
                                         <div class='sg_gov'>
-                                                <label>A Singapore Government Agency Website</label>
+                                                <label>SafeEntry Test Page</label>
                                         </div>
                                         <div class='safeEntry_directory'>
                                                 <nav class='nav_bar'>
