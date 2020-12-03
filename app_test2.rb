@@ -294,7 +294,7 @@ class MyApp < Sinatra::Base
                                         </div>
                                 </header>
                                 <section>
-                                        <p>Welcome to the Safe Entry Management Portal(SEMP)! Here you'll be able to access the crowd levels of various shopping malls and buildings. Simply click on the <b>Refresh</b> to update the page with new records. Click <b>Insert</b> to add a new building to the list! And click <b>Delete</b> to remove a building from the list!<br></br><b><i> #SGCLEAN</i></b><br><b><i> #SGUNITED!</i></b></br></p>
+                                        <p>Welcome to the Safe Entry Management Portal(SEMP)! Here you'll be able to access the crowd levels of various shopping malls and buildings. Simply click on the <b>Refresh</b> to update the page with new records. Click <b>Insert</b> to add a new building to the list! Click <b>Delete</b> to remove a building from the list! Click <b>About</b> to find out more about Safe Entry Check-Ins and Check-Outs! Let's all do your part to stop the spread of the virus!<br></br><b><i> #SGCLEAN</i></b><br><b><i> #SGUNITED!</i></b></br></p>
                                         <br>
 				</section>
 				<section class='center'>

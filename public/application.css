@@ -12,9 +12,10 @@ table, td, tr, th {
 }
 
 .center {
-	text-align: center;
-	padding-left: 500px;
-	padding-right: 500px;
+	margin: auto;
+	width: 60%;
+	border: 3px solid #000000;
+	padding: 10px;
 }
 
 .sg_gov { 
