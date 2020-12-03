@@ -34,6 +34,7 @@ table, td, tr, th {
 	margin-left: 10px; 
 	width: 200px; 
 	height: 40;
+	padding-left: 88px;
 }
 
 .form_box {
@@ -51,14 +52,12 @@ table, td, tr, th {
 
 .whereami {
 	width: 100%;
-	overflow: auto;
 	background-color:#cceeff;
+	overflow: auto;
 }
 
 .whereami h1{
 	padding-left: 90px;
-	padding-top: 5px;
-	padding-bottom: 5px;
 	text-align: left;
 	font-size: 30px;
 }
