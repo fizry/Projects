@@ -274,7 +274,7 @@ class MyApp < Sinatra::Base
                         <body>
                                 <header>
                                         <div class='sg_gov'>
-                                                <label>SafeEntry Test Page</label>
+                                                <p>A Singapore Government Agency Website</p>
                                         </div>
                                         <div class='safeEntry_directory'>
                                                 <nav class='nav_bar'>
@@ -289,11 +289,11 @@ class MyApp < Sinatra::Base
                                                         </ul>
                                                 </nav>
                                         </div>
+					<div class='whereami'>
+                                                <h1>You are current in: Home Page</h1>
+                                        </div>
                                 </header>
                                 <section>
-					<div class='whereami'>
-						<h1>You are current in: Home Page</h1>	
-					</div>
                                         <p>Welcome to the Safe Entry Management Portal(SEMP)! Here you'll be able to access the crowd levels of various shopping malls and buildings. Simply click on the <b>Refresh</b> to update the page with new records. Click <b>Insert</b> to add a new building to the list! And click <b>Delete</b> to remove a building from the list!<br></br><b><i> #SGCLEAN</i></b><br><b><i> #SGUNITED!</i></b></br></p>
                                         <br>
 					<div class='center'>
@@ -329,7 +329,7 @@ class MyApp < Sinatra::Base
                         <body>
                                 <header>
                                         <div class='sg_gov'>
-                                                <label>SafeEntry Test Page</label>
+                                                <p>A Singapore Government Agency Website</p>
 					</div>
                                         <div class='safeEntry_directory'>
                                                 <nav class='nav_bar'>
@@ -344,9 +344,11 @@ class MyApp < Sinatra::Base
                                                         </ul>
                                                 </nav>
                                         </div>
+					<div class='whereami'>
+                                                <h1>You are current in: Insert Page</h1>
+                                        </div>
                                 </header>
                                 <section>
-                                        <h1><b>Insert Page</b></h1>
                                         <p>Please state the name of the store followed by the crowd limit!</p>
 					<div class='form_box'>
 	                                        <form method='post' action='/runInsert' name='Form' OnSubmit='return validateForm()'>
@@ -386,7 +388,7 @@ class MyApp < Sinatra::Base
                         <body>
                                 <header>
                                         <div class='sg_gov'>
-                                                <label>SafeEntry Test Page</label>
+                                                <p>A Singapore Government Agency Website</p>
                                         </div>
                                         <div class='safeEntry_directory'>
                                                 <nav class='nav_bar'>
@@ -401,9 +403,11 @@ class MyApp < Sinatra::Base
                                                         </ul>
                                                 </nav>
                                         </div>
+					<div class='whereami'>
+                                                <h1>You are current in: Delete Page</h1>
+                                        </div>
                                 </header>
                                 <section>
-                                        <h1><b>Delete Page</b></h1>
                                         <p>Refer to the table below and key in the respective Store ID in the input box!</p>
                                         #{$xm}
                                         <br>
@@ -437,7 +441,7 @@ class MyApp < Sinatra::Base
                         <body>
                                 <header>
                                         <div class='sg_gov'>
-                                                <label>SafeEntry Test Page</label>
+                                                <p>A Singapore Government Agency Website</p>
                                         </div>
                                         <div class='safeEntry_directory'>
                                                 <nav class='nav_bar'>
@@ -452,9 +456,11 @@ class MyApp < Sinatra::Base
                                                         </ul>
                                                 </nav>
                                         </div>
+                                        <div class='whereami'>
+                                                <h1>You are current in: About Page</h1>
+                                        </div>
                                 </header>
                                 <section>
-                                        <h1>About Page</h1>
                                         <br>
                                         <h2>What is Safe Entry?</h2>
 					<p>SafeEntry is a national digital check-in system that logs the NRIC/FINs and mobile numbers of individuals visiting hotspots, workplaces of essential services, as well as selected public venues to prevent and control the transmission of COVID-19 through activities such as contact tracing and identification of COVID-19 clusters. Individuals can choose to check in/out from SafeEntry at entry/exit points using any of the following methods:</p><p>(a) Scan QR code: Use the SingPass Mobile app, TraceTogether app, your mobile phone's camera function or a recommended QR scanner app to scan a QR code and submit your personal particulars; or</p><p>(b) Scan ID card: Present an identification card barcode (e.g. NRIC, Passion card, Pioneer Generation card, Merdeka Generation card, driver's licence, Transitlink concession card, student pass, work permit, SingPass Mobile app, TraceTogether app) to be scanned by staff; or</p><p>(c) Select from a list of nearby locations: Use the SingPass Mobile app's - SafeEntry Check-In function to select a location and check in.</p>
@@ -491,7 +497,7 @@ The common use of SafeEntry by all establishments would allow data to be automat
                         <body>
                                 <header>
                                         <div class='sg_gov'>
-                                                <label>SafeEntry Test Page</label>
+                                                <p>A Singapore Government Agency Website</p>
 					</div>
                                         <div class='safeEntry_directory'>
                                                 <nav class='nav_bar'>
@@ -529,7 +535,7 @@ The common use of SafeEntry by all establishments would allow data to be automat
                         <body>
                                 <header>
                                         <div class='sg_gov'>
-                                                <label>SafeEntry Test Page</label>
+                                                <p>A Singapore Government Agency Website</p>
                                         </div>
                                         <div class='safeEntry_directory'>
                                                 <nav class='nav_bar'>
@@ -566,7 +572,7 @@ The common use of SafeEntry by all establishments would allow data to be automat
                         <body>
                                 <header>
                                         <div class='sg_gov'>
-                                                <label>SafeEntry Test Page</label>
+                                                <p>A Singapore Government Agency Website</p>
                                         </div>
                                         <div class='safeEntry_directory'>
                                                 <nav class='nav_bar'>
