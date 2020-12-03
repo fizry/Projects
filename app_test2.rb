@@ -274,7 +274,7 @@ class MyApp < Sinatra::Base
                         <body>
                                 <header>
                                         <div class='sg_gov'>
-                                                <label>SafeEntry Test Page</label>
+                                                <p>A Singapore Government Agency Website</p>
                                         </div>
                                         <div class='safeEntry_directory'>
                                                 <nav class='nav_bar'>
@@ -329,7 +329,7 @@ class MyApp < Sinatra::Base
                         <body>
                                 <header>
                                         <div class='sg_gov'>
-                                                <label>SafeEntry Test Page</label>
+                                                <p>A Singapore Government Agency Website</p>
 					</div>
                                         <div class='safeEntry_directory'>
                                                 <nav class='nav_bar'>
@@ -388,7 +388,7 @@ class MyApp < Sinatra::Base
                         <body>
                                 <header>
                                         <div class='sg_gov'>
-                                                <label>SafeEntry Test Page</label>
+                                                <p>A Singapore Government Agency Website</p>
                                         </div>
                                         <div class='safeEntry_directory'>
                                                 <nav class='nav_bar'>
@@ -441,7 +441,7 @@ class MyApp < Sinatra::Base
                         <body>
                                 <header>
                                         <div class='sg_gov'>
-                                                <label>SafeEntry Test Page</label>
+                                                <p>A Singapore Government Agency Website</p>
                                         </div>
                                         <div class='safeEntry_directory'>
                                                 <nav class='nav_bar'>
@@ -497,7 +497,7 @@ The common use of SafeEntry by all establishments would allow data to be automat
                         <body>
                                 <header>
                                         <div class='sg_gov'>
-                                                <label>SafeEntry Test Page</label>
+                                                <p>A Singapore Government Agency Website</p>
 					</div>
                                         <div class='safeEntry_directory'>
                                                 <nav class='nav_bar'>
@@ -535,7 +535,7 @@ The common use of SafeEntry by all establishments would allow data to be automat
                         <body>
                                 <header>
                                         <div class='sg_gov'>
-                                                <label>SafeEntry Test Page</label>
+                                                <p>A Singapore Government Agency Website</p>
                                         </div>
                                         <div class='safeEntry_directory'>
                                                 <nav class='nav_bar'>
@@ -572,7 +572,7 @@ The common use of SafeEntry by all establishments would allow data to be automat
                         <body>
                                 <header>
                                         <div class='sg_gov'>
-                                                <label>SafeEntry Test Page</label>
+                                                <p>A Singapore Government Agency Website</p>
                                         </div>
                                         <div class='safeEntry_directory'>
                                                 <nav class='nav_bar'>
