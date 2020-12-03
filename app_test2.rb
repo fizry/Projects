@@ -274,7 +274,7 @@ class MyApp < Sinatra::Base
                         <body>
                                 <header>
                                         <div class='sg_gov'>
-                                                <p>lSafeEntry Test Page</p>
+                                                <label>SafeEntry Test Page</label>
                                         </div>
                                         <div class='safeEntry_directory'>
                                                 <nav class='nav_bar'>
@@ -291,7 +291,7 @@ class MyApp < Sinatra::Base
                                         </div>
                                 </header>
                                 <section>
-					<div class='page'>
+					<div class='whereami'>
 						<h1>You are current in: Home Page</h1>	
 					</div>
                                         <p>Welcome to the Safe Entry Management Portal(SEMP)! Here you'll be able to access the crowd levels of various shopping malls and buildings. Simply click on the <b>Refresh</b> to update the page with new records. Click <b>Insert</b> to add a new building to the list! And click <b>Delete</b> to remove a building from the list!<br></br><b><i> #SGCLEAN</i></b><br><b><i> #SGUNITED!</i></b></br></p>
