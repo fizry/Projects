@@ -300,7 +300,7 @@ class MyApp < Sinatra::Base
 				<section class='center'>
 					#{$xm}
                                         <br>
-                                        #{'Last Updated: ' + Time.now.ctime}
+                                        <style text-align: 'center'>#{'Last Updated: ' + Time.now.ctime}</style>
                                         </br></br>
                                 </section>
                         </body>
