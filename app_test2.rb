@@ -409,16 +409,20 @@ class MyApp < Sinatra::Base
                                 </header>
                                 <section>
                                         <p>Refer to the table below and key in the respective Store ID in the input box!</p>
+				</section>
+				<section class='center'>
                                         #{$xm}
                                         <br>
-                                        <form method='post' name='Form' onSubmit='return validateForm()' action='/runDelete'>
-       	                                        <label for='store_id'>Store ID</label>
-						<input type='text' name='store_id'><br></br></br>
-               	                                <input type='submit' value='Submit'>
-                       	                        <a href='/index'>
-                               	                        <input type='button' value='Back'>
-                                       	        </a>
-                                        </form>
+					<div class='form_box'>
+	                                        <form method='post' name='Form' onSubmit='return validateForm()' action='/runDelete'>
+       	                                        	<label for='store_id'>Store ID</label>
+							<input type='text' name='store_id'><br></br></br>
+               	                	                <input type='submit' value='Submit'>
+                       		                        <a href='/index'>
+                	               	                        <input type='button' value='Back'>
+        	                               	        </a>
+	                                        </form>
+					</div>
                                 </section>
                         </body>
                 </html>
@@ -514,10 +518,12 @@ The common use of SafeEntry by all establishments would allow data to be automat
                                         </div>
                                 </header>
                                 <section>
-                                        <p>Click the [Back] button to return to the index page.</p><br></br>
-                                        <a href='/index'>
-                                                <input type='submit' value='Back'/>
-                                        </a>
+					<div class='form_box'>
+	                                        <p>Click the [Back] button to return to the index page.</p><br></br>
+        	                                <a href='/index'>
+                	                                <input type='submit' value='Back'/>
+                        	                </a>
+					</div>
                                 </section>
                         </body>
                 </html>
