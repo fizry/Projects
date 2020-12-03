@@ -9,6 +9,7 @@ table, td, tr, th {
 	border-collapse: collapse;
 	width: 550px;
 	text-align: center;
+	white-space: nowrap;
 }
 
 .center {
