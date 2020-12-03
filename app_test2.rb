@@ -413,9 +413,10 @@ class MyApp < Sinatra::Base
 				<section class='center'>
                                         #{$xm}
                                         <br>
-					<div class='form_box'>
+				</section>
+				<section class='form_box'>
 	                                        <form method='post' name='Form' onSubmit='return validateForm()' action='/runDelete'>
-       	                                        	<label for='store_id'>Store ID</label>
+       	                                        	<label for='store_id'>Store ID:</label>
 							<input type='text' name='store_id'><br></br></br>
                	                	                <input type='submit' value='Submit'>
                        		                        <a href='/index'>
