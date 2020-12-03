@@ -348,7 +348,7 @@ class MyApp < Sinatra::Base
                                 <section>
                                         <h1><b>Insert Page</b></h1>
                                         <p>Please state the name of the store followed by the crowd limit!</p>
-					<div class='container'>
+					<div class='form_box'>
 	                                        <form method='post' action='/runInsert' name='Form' OnSubmit='return validateForm()'>
 							<label for='location'>Store Name:</label>
                 		                        <input type='text' name='location'><br></br>

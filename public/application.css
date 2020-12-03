@@ -20,12 +20,12 @@ table, td, tr, th {
 	width: 100%; 
 	overflow:auto;
 	background-color: #DCDCDC;
-	font-size: 16px;
 }
-.sg_gov p {
+.sg_gov p, label {
 	padding-left: 90px; 
 	padding-top: 5px;
 	padding-bottom: 5px;
+	font-size: 16px;
 }
 .safeEntry_img img {
 	position: absolute; 
@@ -36,14 +36,14 @@ table, td, tr, th {
 	height: 40;
 }
 
-.container {
+.form_box {
 	width: 500px;
 	clear: both;
 	margin-left: auto;
 	margin-right: auto;
 }
 
-.container input{
+.form_box input{
 	width: 100%;
 	clear: both;
 
@@ -53,13 +53,14 @@ table, td, tr, th {
 	width: 100%;
 	overflow: auto;
 	background-color:#cceeff;
-	font-size: 20px;
 }
 
 .whereami h1{
 	padding-left: 90px;
 	padding-top: 5px;
 	padding-bottom: 5px;
+	text-align: left;
+	font-size: 30px;
 }
 
 nav {
