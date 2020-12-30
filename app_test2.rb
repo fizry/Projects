@@ -7,7 +7,6 @@ require 'rack'
 require 'stringio'
 require 'socket'
 
-<<<<<<< HEAD
 #Initialize mysql_conn with mysql database connection
 def mysql_conn
 	client = Mysql2::Client.new(
@@ -56,14 +55,12 @@ end
 get "/runDelete" do
 	delete_template
 end
-=======
+
 class MyApp < Sinatra::Base
 	set :bind, "0.0.0.0"
 	set :port, "4567"
 	set :raise_errors, false
 	set :show_exceptions, false
->>>>>>> master
-
 
 	get '/' do
 		redirect to("/index")
