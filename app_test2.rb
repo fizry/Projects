@@ -113,9 +113,9 @@ class MyApp < Sinatra::Base
 #		redirect to('/')
 #	end
 
-	get error 404 do
-		page_not_found_template
-	end
+#	get "error 404" do
+#		page_not_found_template
+#	end
 
 
 	#Initialize mysql_conn with mysql database connection
