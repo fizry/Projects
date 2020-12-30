@@ -7,7 +7,7 @@ require 'builder'
 #Initialize mysql_conn with mysql database connection
 def mysql_conn
 	client = Mysql2::Client.new(
-        	        :host => '127.0.0.1',
+			:host => '192.168.80.243',
                 	:username => 'root',
 	                :password => 'toor',
         	        :database => 'internship',
