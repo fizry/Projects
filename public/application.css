@@ -2,22 +2,30 @@ body {
 	background-color: #FFE4E1;
 	margin: 0;
 	padding: 0;
-	font-family: Times New Roman;
+	font-family: arial;
 }
 table, td, tr, th { 
 	border: 1px solid black;
-	width: 550px;
+	border-collapse: collapse;
+	width: 700px;
 	text-align: center;
+	white-space: nowrap;
+	font-size: 20px;
 }
+
+.center {
+	padding-left: 620px;
+}
+
 .sg_gov { 
-	width: 100%; 
-	overflow:auto;
+	padding-top: 1px;
+	padding-bottom: 1px;	
 	background-color: #DCDCDC;
-	font-size: 16px;
 }
 .sg_gov p {
 	padding-left: 90px; 
-	padding-top: 5px;
+	text-align: left;
+	font-size: 16px;
 }
 .safeEntry_img img {
 	position: absolute; 
@@ -26,7 +34,35 @@ table, td, tr, th {
 	margin-left: 10px; 
 	width: 200px; 
 	height: 40;
+	padding-left: 88px;
 }
+
+.form_box {
+	width: 500px;
+	clear: both;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.form_box input{
+	width: 100%;
+	clear: both;
+
+}
+
+.whereami {
+	padding-top: 2px;
+	padding-bottom: 2px;
+	background-color: #cceeff;
+	overflow: auto;
+}
+
+.whereami h1{
+	padding-left: 90px;
+	text-align: left;
+	font-size: 30px;
+}
+
 nav {
 	width: 100%; 
 	background: #FFFFFF; 
@@ -58,3 +94,37 @@ section {
 	margin-left: 15px; 
 	font-size: 20px;
 }
+
+input[type=button], input[type=submit]{
+	background-color: #b3b3b3;
+	border: none;
+	color: white;
+	padding: 10px 26px;
+	text-decoration: none;
+	margin: 4px 2px;
+	cursor: pointer;
+}
+
+p {
+	text-align: center;
+	font-size:20px;
+	padding-right: 10px;
+}
+
+h1 {
+	text-align: center;
+	font-size: 30px;
+}
+
+h2 {
+	text-align: center;
+	font-size: 27px;
+}
+
+h3 {
+	text-align: center;
+	font-size: 24px;
+}
+
+
+
