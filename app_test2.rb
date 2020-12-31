@@ -7,60 +7,12 @@ require 'rack'
 require 'stringio'
 require 'socket'
 
-#Initialize mysql_conn with mysql database connection
-def mysql_conn
-	client = Mysql2::Client.new(
-			:host => '192.168.80.243',
-                	:username => 'root',
-	                :password => 'toor',
-        	        :database => 'internship',
-			:reconnect => true,
-                	:encoding => 'utf8'
-	        )
-	return client
-end
-
-#Regex Expression to check if params is integers only!
-def contains_nums(int)
-	int =~ /\d+/
-end
-
-#When /index page is called, mysql_client method is called
-get "/index" do
-	mysql_client
-	index_template
-end
-
-#When user click [Update], update method is called and page is redirected to /index
-get "/runUpdate" do
-	update
-	redirect "/index"
-end
-
-#Returns the insert_template
-get "/runInsert" do
-	insert_template
-end
-
-#Values Posted Insert
-post "/runInsert" do
-	$location_name = params[:location]
-	$limit = params[:limit]
-	insert
-	"Building: " + $location_name + "Limit:  " + $limit
-	back_to_index
-end
-
-#Delete template is retrieved and displayed
-get "/runDelete" do
-	delete_template
-end
-
 class MyApp < Sinatra::Base
 	set :bind, "0.0.0.0"
 	set :port, "4567"
 	set :raise_errors, false
 	set :show_exceptions, false
+
 
 	get '/' do
 		redirect to("/index")
@@ -654,4 +606,3 @@ The common use of SafeEntry by all establishments would allow data to be automat
 		"
 	end
 end
-
