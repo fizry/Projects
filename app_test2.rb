@@ -61,9 +61,9 @@ class MyApp < Sinatra::Base
         	about_template
 	end
 
-#	error do
-#		redirect to('/')
-#	end
+	error do
+		redirect to('/')
+	end
 
 	not_found do
 		page_not_found_template
