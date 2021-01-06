@@ -65,7 +65,7 @@ class MyApp < Sinatra::Base
 #		redirect to('/')
 #	end
 
-	error 404 do
+	not_found do
 		page_not_found_template
 	end
 
