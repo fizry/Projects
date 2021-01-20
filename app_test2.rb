@@ -8,72 +8,72 @@ require 'stringio'
 require 'socket'
 
 class MyApp < Sinatra::Base
-	set :bind, "0.0.0.0"
-	set :port, "4567"
-	set :raise_errors, false
-	set :show_exceptions, false
+        set :bind, "0.0.0.0"
+        set :port, "4567"
+        set :raise_errors, false
+        set :show_exceptions, false
 
 
-	get '/' do
-		redirect to("/index")
-	end
+        get '/' do
+                redirect to("/index")
+        end
 
-	#When /index page is called, mysql_client method is called
-	get "/index" do
-        	mysql_client
-	        index_template
-	end	
+        #When /index page is called, mysql_client method is called
+        get "/index" do
+                mysql_client
+                index_template
+        end
 
-	#When user click [Update], update method is called and page is redirected to /index
-	get "/runUpdate" do
-        	update
-	        redirect "/index"
-	end
+        #When user click [Update], update method is called and page is redirected to /index
+        get "/runUpdate" do
+                update
+                redirect "/index"
+        end
 
-	#Returns the insert_template
-	get "/runInsert" do
-	        insert_template
-	end
+        #Returns the insert_template
+        get "/runInsert" do
+                insert_template
+        end
 
-	#Values Posted Insert
-	post "/runInsert" do
-        	$location_name = params[:location]
-	        $limit = params[:limit]
-        	insert
-	        "Building: " + $location_name + "Limit:  " + $limit
-        	back_to_index
-	end
+        #Values Posted Insert
+        post "/runInsert" do
+                $location_name = params[:location]
+                $limit = params[:limit]
+                insert
+                "Building: " + $location_name + "Limit:  " + $limit
+                back_to_index
+        end
 
-	#Delete template is retrieved and displayed
-	get "/runDelete" do
-        	delete_template
-	end
+        #Delete template is retrieved and displayed
+        get "/runDelete" do
+                delete_template
+        end
 
-	#Values posted to Delete
-	post "/runDelete" do
-        	$store_id = params[:store_id]
-	        delete
-        	back_to_index
-	end
+        #Values posted to Delete
+        post "/runDelete" do
+                $store_id = params[:store_id]
+                delete
+                back_to_index
+        end
 
-	#About template is retrieved and displayed
-	get "/runAbout" do
-        	about_template
-	end
+        #About template is retrieved and displayed
+        get "/runAbout" do
+                about_template
+        end
 
-	error do
-		redirect to('/')
-	end
+#       error do
+#               redirect to('/')
+#       end
 
-	not_found do
-		page_not_found_template
-	end
+        error 404 do
+                page_not_found_template
+        end
 
 
-	#Initialize mysql_conn with mysql database connection
+        #Initialize mysql_conn with mysql database connection
         def mysql_conn
                 client = Mysql2::Client.new(
-				:host => '192.168.80.243',
+                                :host => '192.168.80.243',
                                 :username => 'root',
                                 :password => 'toor',
                                 :database => 'internship',
@@ -88,19 +88,19 @@ class MyApp < Sinatra::Base
                 string.scan(/\D/).empty?
         end
 
-	def ip_valid
-		puts "CONTAINER ATTEMPTING TO CONNECT TO DB"
-		addr_infos = Socket.ip_address_list
+        def ip_valid
+                puts "CONTAINER ATTEMPTING TO CONNECT TO DB"
+                addr_infos = Socket.ip_address_list
 
-		addr_infos.each do |addr_info|
-			if addr_info.ip_address =~ /192.168.80\.[0-9]{1,3}/
-                		valid_IP = addr_info.ip_address
-		        end
-			
-			puts "CONTAINER SUCCESSFULLY CONNECTED TO " + valid_IP.to_s
-			return valid_IP.to_s
-		end
-	end
+                addr_infos.each do |addr_info|
+                        if addr_info.ip_address =~ /192.168.80\.[0-9]{1,3}/
+                                valid_IP = addr_info.ip_address
+                        end
+
+                        puts "CONTAINER SUCCESSFULLY CONNECTED TO " + valid_IP.to_s
+                        return valid_IP.to_s
+                end
+        end
 
         #BOOT FUNCTION
         def mysql_client
@@ -168,7 +168,7 @@ class MyApp < Sinatra::Base
                 location = $location_name.to_s
                 i = 0
                 insert_here = 0
-		neg_num_list = []
+                neg_num_list = []
 
                 id_num = mysql_conn.query("SELECT store_id FROM safeEntry;")
 
@@ -185,29 +185,29 @@ class MyApp < Sinatra::Base
 
 
                 if location.empty? != TRUE && limit.empty? != TRUE
-                	limit_num_check = contains_nums(limit)
-	                if limit_num_check == TRUE
-				if insert_here != 0
-		                        mysql_conn.query("INSERT INTO safeEntry (store_id, store_address, crowd_level , crowd_limit) VALUES(" + insert_here.to_s + ", '"  + location + "', 0, " + limit  + ");")
-                	                puts "STATEMENT A HAS BEEN QUERIED!"
-		                else
-                 		       mysql_conn.query("INSERT INTO safeEntry (store_id, store_address, crowd_level, crowd_limit) VALUES(" + (id_num.count + 1).to_s + ", '" + location + ", 0, " + limit + ");")
-		                        puts "STATEMENT B HAS BEEN QUERIED!"
-				end
-                	else
-                        	puts "LIMIT DOES NOT CONTAIN INTEGERS"
-                	end
+                        limit_num_check = contains_nums(limit)
+                        if limit_num_check == TRUE
+                                if insert_here != 0
+                                        mysql_conn.query("INSERT INTO safeEntry (store_id, store_address, crowd_level , crowd_limit) VALUES(" + insert_here.to_s + ", '"  + location + "', 0, " + limit  + ");")
+                                        puts "STATEMENT A HAS BEEN QUERIED!"
+                                else
+                                       mysql_conn.query("INSERT INTO safeEntry (store_id, store_address, crowd_level, crowd_limit) VALUES(" + (id_num.count + 1).to_s + ", '" + location + ", 0, " + limit + ");")
+                                        puts "STATEMENT B HAS BEEN QUERIED!"
+                                end
+                        else
+                                puts "LIMIT DOES NOT CONTAIN INTEGERS"
+                        end
                 end
-		
-		neg_num = mysql_conn.query("SELECT store_id FROM safeEntry WHERE store_id=-1")
 
-		neg_num.each do |row|
-			neg_num_list << row["store_id"].to_s
-		end
+                neg_num = mysql_conn.query("SELECT store_id FROM safeEntry WHERE store_id=-1")
 
-		if neg_num_list.any? == true
-			mysql_conn.query("UPDATE safeEntry SET store_id=" + (id_num.count + 1).to_s  + " WHERE store_id=-1;")
-		end
+                neg_num.each do |row|
+                        neg_num_list << row["store_id"].to_s
+                end
+
+                if neg_num_list.any? == true
+                        mysql_conn.query("UPDATE safeEntry SET store_id=" + (id_num.count + 1).to_s  + " WHERE store_id=-1;")
+                end
 
                 mysql_conn.close
                 puts "INSERT SEQUENCE LOADED!"
@@ -289,16 +289,16 @@ class MyApp < Sinatra::Base
                                                         </ul>
                                                 </nav>
                                         </div>
-					<div class='whereami'>
+                                        <div class='whereami'>
                                                 <h1>You are current in: Home Page</h1>
                                         </div>
                                 </header>
                                 <section>
                                         <p>Welcome to the Safe Entry Management Portal(SEMP)! Here you'll be able to access the crowd levels of various shopping malls and buildings. Simply click on the <b>Refresh</b> to update the page with new records. Click <b>Insert</b> to add a new building to the list! Click <b>Delete</b> to remove a building from the list! Click <b>About</b> to find out more about Safe Entry Check-Ins and Check-Outs! Let's all do our part to stop the spread of the virus!<br></br><b><i> #SGCLEAN</i></b><br><b><i> #SGUNITED!</i></b></br></p>
                                         <br>
-				</section>
-				<section class='center'>
-					#{$xm}
+                                </section>
+                                <section class='center'>
+                                        #{$xm}
                                         <br>
                                         #{'Last Updated: ' + Time.now.ctime}
                                         </br></br>
@@ -330,7 +330,7 @@ class MyApp < Sinatra::Base
                                 <header>
                                         <div class='sg_gov'>
                                                 <p>A Singapore Government Agency Website</p>
-					</div>
+                                        </div>
                                         <div class='safeEntry_directory'>
                                                 <nav class='nav_bar'>
                                                         <a class='safeEntry_img' href='/index'>
@@ -344,24 +344,24 @@ class MyApp < Sinatra::Base
                                                         </ul>
                                                 </nav>
                                         </div>
-					<div class='whereami'>
+                                        <div class='whereami'>
                                                 <h1>You are current in: Insert Page</h1>
                                         </div>
                                 </header>
                                 <section>
                                         <p>Please state the name of the store followed by the crowd limit!</p>
-					<div class='form_box'>
-	                                        <form method='post' action='/runInsert' name='Form' OnSubmit='return validateForm()'>
-							<label for='location'>Store Name:</label>
-                		                        <input type='text' name='location'><br></br>
-                                	                <label for='location'>Crowd Limits:</label>
-							<input type='text' name='limit'><br></br>
-                                        	        <input type='submit' value='Submit'>
-							<a href='/index'>
-                                                        	<input type='button' value='Back'>
-	                                                </a>
-	                                        </form>
-					</div>
+                                        <div class='form_box'>
+                                                <form method='post' action='/runInsert' name='Form' OnSubmit='return validateForm()'>
+                                                        <label for='location'>Store Name:</label>
+                                                        <input type='text' name='location'><br></br>
+                                                        <label for='location'>Crowd Limits:</label>
+                                                        <input type='text' name='limit'><br></br>
+                                                        <input type='submit' value='Submit'>
+                                                        <a href='/index'>
+                                                                <input type='button' value='Back'>
+                                                        </a>
+                                                </form>
+                                        </div>
                                 </section>
                         </body>
                 </html>
@@ -375,7 +375,7 @@ class MyApp < Sinatra::Base
                                 <meta charset='utf-8'>
                                 <link rel='stylesheet' type='text/css' href='/application.css'/>
                                 <title>SEMP - Delete Page</title>
-				<script>
+                                <script>
                                         function validateForm() {
                                                  var x = document.forms['Form']['store_id'].value;
                                                  if (x == '' || x == null) {
@@ -403,27 +403,27 @@ class MyApp < Sinatra::Base
                                                         </ul>
                                                 </nav>
                                         </div>
-					<div class='whereami'>
+                                        <div class='whereami'>
                                                 <h1>You are current in: Delete Page</h1>
                                         </div>
                                 </header>
                                 <section>
                                         <p>Refer to the table below and key in the respective Store ID in the input box!</p>
-				</section>
-				<section class='center'>
+                                </section>
+                                <section class='center'>
                                         #{$xm}
                                         <br>
-				</section>
-				<section class='form_box'>
-	                                        <form method='post' name='Form' onSubmit='return validateForm()' action='/runDelete'>
-       	                                        	<label for='store_id'>Store ID:</label>
-							<input type='text' name='store_id'><br></br></br>
-               	                	                <input type='submit' value='Submit'>
-                       		                        <a href='/index'>
-                	               	                        <input type='button' value='Back'>
-        	                               	        </a>
-	                                        </form>
-					</div>
+                                </section>
+                                <section class='form_box'>
+                                                <form method='post' name='Form' onSubmit='return validateForm()' action='/runDelete'>
+                                                        <label for='store_id'>Store ID:</label>
+                                                        <input type='text' name='store_id'><br></br></br>
+                                                        <input type='submit' value='Submit'>
+                                                        <a href='/index'>
+                                                                <input type='button' value='Back'>
+                                                        </a>
+                                                </form>
+                                        </div>
                                 </section>
                         </body>
                 </html>
@@ -437,10 +437,10 @@ class MyApp < Sinatra::Base
                                 <meta charset='utf-8'>
                                 <link rel='stylesheet' type='text/css' href='/application.css'/>
                                 <title>SEMP - Insert Page</title>
-				<style>
-					h1, h3 {text-align: center;}
-					p {text-align: center;}
-				</style>
+                                <style>
+                                        h1, h3 {text-align: center;}
+                                        p {text-align: center;}
+                                </style>
 
                         </head>
                         <body>
@@ -468,7 +468,7 @@ class MyApp < Sinatra::Base
                                 <section>
                                         <br>
                                         <h2>What is Safe Entry?</h2>
-					<p>SafeEntry is a national digital check-in system that logs the NRIC/FINs and mobile numbers of individuals visiting hotspots, workplaces of essential services, as well as selected public venues to prevent and control the transmission of COVID-19 through activities such as contact tracing and identification of COVID-19 clusters. Individuals can choose to check in/out from SafeEntry at entry/exit points using any of the following methods:</p><p>(a) Scan QR code: Use the SingPass Mobile app, TraceTogether app, your mobile phone's camera function or a recommended QR scanner app to scan a QR code and submit your personal particulars; or</p><p>(b) Scan ID card: Present an identification card barcode (e.g. NRIC, Passion card, Pioneer Generation card, Merdeka Generation card, driver's licence, Transitlink concession card, student pass, work permit, SingPass Mobile app, TraceTogether app) to be scanned by staff; or</p><p>(c) Select from a list of nearby locations: Use the SingPass Mobile app's - SafeEntry Check-In function to select a location and check in.</p>
+                                        <p>SafeEntry is a national digital check-in system that logs the NRIC/FINs and mobile numbers of individuals visiting hotspots, workplaces of essential services, as well as selected public venues to prevent and control the transmission of COVID-19 through activities such as contact tracing and identification of COVID-19 clusters. Individuals can choose to check in/out from SafeEntry at entry/exit points using any of the following methods:</p><p>(a) Scan QR code: Use the SingPass Mobile app, TraceTogether app, your mobile phone's camera function or a recommended QR scanner app to scan a QR code and submit your personal particulars; or</p><p>(b) Scan ID card: Present an identification card barcode (e.g. NRIC, Passion card, Pioneer Generation card, Merdeka Generation card, driver's licence, Transitlink concession card, student pass, work permit, SingPass Mobile app, TraceTogether app) to be scanned by staff; or</p><p>(c) Select from a list of nearby locations: Use the SingPass Mobile app's - SafeEntry Check-In function to select a location and check in.</p>
                                         </br>
                                         <h2>Why is Safe Entry being deployed to more places?</h2>
                                         <p>As more activities and services gradually resume following the circuit breaker period, it is important that efforts to prevent and control the transmission of COVID-19 such as contact tracing and identification of COVID-19 clusters can be done quickly to limit the risk of further community transmission. SafeEntry helps support and quicken these efforts to prevent and control the incidence or transmission of COVID-19 as it provides authorities with a record of individuals who enter and exit places. The records will reduce the time needed to identify potential close contacts of COVID-19 patients and potential COVID-19 clusters. This is important so that we can continue advancing towards fewer restrictions on our movements, and our daily lives</p>
@@ -503,7 +503,7 @@ The common use of SafeEntry by all establishments would allow data to be automat
                                 <header>
                                         <div class='sg_gov'>
                                                 <p>A Singapore Government Agency Website</p>
-					</div>
+                                        </div>
                                         <div class='safeEntry_directory'>
                                                 <nav class='nav_bar'>
                                                         <a class='safeEntry_img' href='/index'>
@@ -519,12 +519,12 @@ The common use of SafeEntry by all establishments would allow data to be automat
                                         </div>
                                 </header>
                                 <section>
-					<div class='form_box'>
-	                                        <p>Click the [Back] button to return to the index page.</p><br></br>
-        	                                <a href='/index'>
-                	                                <input type='submit' value='Back'/>
-                        	                </a>
-					</div>
+                                        <div class='form_box'>
+                                                <p>Click the [Back] button to return to the index page.</p><br></br>
+                                                <a href='/index'>
+                                                        <input type='submit' value='Back'/>
+                                                </a>
+                                        </div>
                                 </section>
                         </body>
                 </html>
@@ -559,8 +559,8 @@ The common use of SafeEntry by all establishments would allow data to be automat
                                         </div>
                                 </header>
                                 <section>
-					<h1>I'm sorry, this page is currently under routine maintenance.</h1>
-					<h3>We apologise for any inconveniences caused!</h3>
+                                        <h1>I'm sorry, this page is currently under routine maintenance.</h1>
+                                        <h3>We apologise for any inconveniences caused!</h3>
                                 </section>
                         </body>
                 </html>
@@ -568,8 +568,8 @@ The common use of SafeEntry by all establishments would allow data to be automat
 
         end
 
-	def page_not_found_template
-	       	"
+        def page_not_found_template
+                "
                 <html>
                          <head>
                                 <meta charset='utf-8'>
@@ -596,13 +596,13 @@ The common use of SafeEntry by all establishments would allow data to be automat
                                         </div>
                                 </header>
                                 <section>
-					<h1>404 - PAGE NOT FOUND!</h1>
-					<br>
-					<p>I'm sorry. It seems that the page you are looking for is not available.</p>
-					<br>
-				</section>
-			</body>
-		</html>
-		"
-	end
+                                        <h1>404 - PAGE NOT FOUND!</h1>
+                                        <br>
+                                        <p>I'm sorry. It seems that the page you are looking for is not available.</p>
+                                        <br>
+                                </section>
+                        </body>
+                </html>
+                "
+        end
 end
