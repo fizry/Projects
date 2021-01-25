@@ -73,7 +73,7 @@ class MyApp < Sinatra::Base
         #Initialize mysql_conn with mysql database connection
         def mysql_conn
                 client = Mysql2::Client.new(
-                                :host => '192.168.80.243',
+                                :host => '192.168.0.64',
                                 :username => 'root',
                                 :password => 'toor',
                                 :database => 'internship',
