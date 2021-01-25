@@ -1,0 +1,53 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp-deployment
+  labels:
+    app: webapp
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: webapp
+  template:
+    metadata:
+      labels:
+        app: webapp
+    spec:
+      containers:
+      - name: webapp
+        image: frost987/web-app:latest
+        ports:
+        - containerPort: 4567
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    k8s-app: webapp
+  name: webapp-services
+  namespace: default
+spec:
+  ports:
+    - port: 4567
+      targetPort: 4567
+  selector:
+    k8s-app: webapp
+  type: NodePort
+
+---
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: webapp-pod
+  labels:
+    k8s-app: webapp
+
+spec:
+  containers:
+    - name: webapp
+      image: frost987/web-app
+---
