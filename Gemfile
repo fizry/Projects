@@ -1,5 +1,7 @@
 source 'http://rubygems.org'
 
+bundle add webrick
+
 gem 'bundler'
 
 gem 'sinatra'
