@@ -31,12 +31,42 @@ metadata:
   namespace: default
 spec:
   ports:
-    - port: 4567
+    - port: 80
       targetPort: 4567
   selector:
     k8s-app: webapp
   type: NodePort
 
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql
+spec:
+  ports:
+    -
+      name: mysql
+      protocol: TCP
+      port: 3306
+      targetPort: 3306
+      nodePort: 0
+
+---
+
+kind: Endpoints
+apiVersion: v1
+metadata:
+  name: mysql
+subsets:
+  -
+    addresses:
+      -
+        ip: 192.168.0.47
+    ports:
+      -
+        port: 3306
+        name: mysql
 ---
 
 apiVersion: v1
