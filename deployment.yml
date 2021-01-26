@@ -31,7 +31,7 @@ metadata:
   namespace: default
 spec:
   ports:
-    - port: 4567
+    - port: 80
       targetPort: 4567
   selector:
     k8s-app: webapp
