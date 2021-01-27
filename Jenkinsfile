@@ -4,13 +4,6 @@ pipeline {
                 registryCredential = 'docker_system'
                 dockerImage = ''
     }
-    def remote = [:]
-    	remote.name = 'master-node-uat'
-	remote.host = '192.168.0.60'
-	remote.user = 'administrator'
-	remote.password = 'P@$$W0rd'
-	remote.allowAnyHosts = true
-
   agent any
 
   stages {
@@ -38,9 +31,5 @@ pipeline {
                 }
             }
         }
-       
-	stage('Remote SSH') {
-		sshCommand remote: remote, command: "ls -lrt"
-       }
   }
 }
