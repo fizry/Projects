@@ -4,7 +4,6 @@ pipeline {
                 registryCredential = 'docker_system'
                 dockerImage = ''
     }
-
   agent any
 
   stages {
@@ -32,5 +31,5 @@ pipeline {
                 }
             }
         }
-     }
   }
+}
